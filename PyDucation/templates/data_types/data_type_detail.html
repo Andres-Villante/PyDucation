@@ -1,0 +1,8 @@
+{% extends 'PyDucation/base.html' %}
+
+{% block content %}
+  <h1>{{ data_type.name }}</h1>
+  <p>{{ data_type.description }}</p>
+  <a href="{% url 'data_types:update' pk=data_type.pk %}">Update</a>
+  <a href="{% url 'data_types:delete' pk=data_type.pk %}">Delete</a>
+{% endblock %}
