@@ -3,14 +3,16 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.urls import reverse_lazy
 from blog.models import DataType
 from blog.forms import DataTypeForm
+from django.contrib.auth.forms import UserCreationForm
 
 
 class HomeView(TemplateView):
     template_name = 'PyDucation/home.html'
 
+
 class DataTypeListView(ListView):
     model = DataType
-    template_name = 'data_type_list.html'
+    template_name = 'data_types/data_type_list.html'
     context_object_name = 'data_types'
 
 
@@ -39,4 +41,10 @@ class DataTypeDeleteView(DeleteView):
     model = DataType
     template_name = 'data_type_delete.html'
     context_object_name = 'data_type'
+    success_url = reverse_lazy('data_types:list')
+
+
+class SignUp(CreateView):
+    form_class = UserCreationForm
+    template_name = 'registration/signup.html'
     success_url = reverse_lazy('data_types:list')
