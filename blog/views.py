@@ -8,7 +8,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 
 
 class HomeView(TemplateView):
-    template_name = 'PyDucation/home.html'
+    template_name = 'PyDucation/unregistered_users/home.html'
 
 
 class DataTypeListView(ListView):
@@ -48,7 +48,14 @@ class DataTypeDeleteView(DeleteView):
 class SignUpView(CreateView):
     form_class = UserCreationForm
     template_name = 'registration/signup.html'
-    success_url = reverse_lazy('data_types:list')
+    success_url = reverse_lazy('login')
+
 
 class LoginView(LoginView):
     next_page = reverse_lazy("data_types:list")
+
+
+class LogoutView(LogoutView):
+    template_name = 'registration/logout.html'
+
+

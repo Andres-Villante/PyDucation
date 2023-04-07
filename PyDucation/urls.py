@@ -24,19 +24,25 @@ from blog.views import (
     DataTypeDeleteView,
     SignUpView,
     LoginView,
+    LogoutView,
 )
+from django.contrib.auth.decorators import login_required
+
 
 app_name = 'blog'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomeView.as_view(), name='home'),
+
     path('data_types/', DataTypeListView.as_view(), name='list'),
     path('data_types/<int:pk>/', DataTypeDetailView.as_view(), name='detail'),
     path('data_types/create/', DataTypeCreateView.as_view(), name='create'),
     path('data_types/<int:pk>/update/', DataTypeUpdateView.as_view(), name='update'),
     path('data_types/<int:pk>/delete/', DataTypeDeleteView.as_view(), name='delete'),
+    
     path('signup/', SignUpView.as_view(), name='signup'),
     path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
 
 ]
