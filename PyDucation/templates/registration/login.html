@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<h1> User Register </h1>
+<h1> Access To The System </h1>
 
 <form method="POST">
 {% csrf_token %}
@@ -16,9 +16,8 @@
         {{ field.label_tag }} {{ field }}
     </p>
 {% endfor %}
-<input type="submit" value="Registrarme">
+<input type="submit" value="Ingresar">
 </form>
 
 {% endblock %}
-
 

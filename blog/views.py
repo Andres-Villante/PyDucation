@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from blog.models import DataType
 from blog.forms import DataTypeForm
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.views import LoginView, LogoutView
 
 
 class HomeView(TemplateView):
@@ -44,7 +45,10 @@ class DataTypeDeleteView(DeleteView):
     success_url = reverse_lazy('data_types:list')
 
 
-class SignUp(CreateView):
+class SignUpView(CreateView):
     form_class = UserCreationForm
     template_name = 'registration/signup.html'
     success_url = reverse_lazy('data_types:list')
+
+class LoginView(LoginView):
+    next_page = reverse_lazy("data_types:list")

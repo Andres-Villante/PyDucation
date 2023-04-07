@@ -22,7 +22,8 @@ from blog.views import (
     DataTypeCreateView,
     DataTypeUpdateView,
     DataTypeDeleteView,
-    SignUp,
+    SignUpView,
+    LoginView,
 )
 
 app_name = 'blog'
@@ -35,5 +36,7 @@ urlpatterns = [
     path('data_types/create/', DataTypeCreateView.as_view(), name='create'),
     path('data_types/<int:pk>/update/', DataTypeUpdateView.as_view(), name='update'),
     path('data_types/<int:pk>/delete/', DataTypeDeleteView.as_view(), name='delete'),
-    path('signup/', SignUp.as_view(), name='signup')
+    path('signup/', SignUpView.as_view(), name='signup'),
+    path('login/', LoginView.as_view(), name='login'),
+
 ]
