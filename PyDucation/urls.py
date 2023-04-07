@@ -13,36 +13,39 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.urls import path, include
-from blog.views import (
-    HomeView,
-    DataTypeListView,
-    DataTypeDetailView,
-    DataTypeCreateView,
-    DataTypeUpdateView,
-    DataTypeDeleteView,
-    SignUpView,
-    LoginView,
-    LogoutView,
-)
+from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.decorators import login_required
-
-
-app_name = 'blog'
+from blog.views import (HomeView,
+                        DataTypeListView, 
+                        DataTypeCreateView, 
+                        DataTypeDetailView, 
+                        DataTypeUpdateView, 
+                        DataTypeDeleteView,
+                        SignUpView,
+                        ProfileView,
+                        )
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # Vista para la página de inicio de PyDucation
     path('', HomeView.as_view(), name='home'),
 
-    path('data_types/', DataTypeListView.as_view(), name='list'),
-    path('data_types/<int:pk>/', DataTypeDetailView.as_view(), name='detail'),
-    path('data_types/create/', DataTypeCreateView.as_view(), name='create'),
-    path('data_types/<int:pk>/update/', DataTypeUpdateView.as_view(), name='update'),
-    path('data_types/<int:pk>/delete/', DataTypeDeleteView.as_view(), name='delete'),
     
-    path('signup/', SignUpView.as_view(), name='signup'),
-    path('login/', LoginView.as_view(), name='login'),
-    path('logout/', LogoutView.as_view(), name='logout'),
+    # URLs del CRUD de DataType
+    path('data_types/', DataTypeListView.as_view(), name='data_type_list'),
+    path('data_types/create/', DataTypeCreateView.as_view(), name='data_type_create'),
+    path('data_types/<int:pk>/', DataTypeDetailView.as_view(), name='data_type_detail'),
+    path('data_types/<int:pk>/update/', DataTypeUpdateView.as_view(), name='data_type_update'),
+    path('data_types/<int:pk>/delete/', DataTypeDeleteView.as_view(), name='data_type_delete'),
 
+    # URLs de autenticación
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/signup/', SignUpView.as_view(), name='signup'),
+    path('accounts/login/', LoginView.as_view(), name='login'),
+    path('accounts/logout/', LogoutView.as_view(), name='logout'),
+    path('profile/', ProfileView.as_view(), name='profile'),
+    path('register/', SignUpView.as_view(), name='register'),
+    
+
+    
 ]
