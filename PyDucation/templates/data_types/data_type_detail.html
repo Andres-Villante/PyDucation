@@ -6,7 +6,8 @@
     <p>{{ data_type.description|linebreaksbr }}</p>
     <h2>Ejemplo:</h2>
     <pre>{{ data_type.example|escape }}</pre>
-    <a href="{% url 'data_type_list' %}">Back to the list of data types</a>
+    <a href="{% url 'data_type_update' pk=data_type.pk %}">Update</a>
+    <br>
+    <a href="{% url 'data_type_delete' pk=data_type.pk %}" onclick="return confirm('¿Está seguro de que desea eliminar este tipo de datos?')">Delete</a>
   </div>
 {% endblock %}
-
