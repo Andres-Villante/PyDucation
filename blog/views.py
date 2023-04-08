@@ -1,3 +1,4 @@
+# Importaciones necesarias
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -8,13 +9,17 @@ from django.contrib.auth.forms import UserCreationForm
 from blog.models import DataType
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.decorators import method_decorator
 from django.views import View
+from django.contrib.auth.forms import UserChangeForm
 
-
+# Vista de inicio
 class HomeView(TemplateView):
     template_name = 'PyDucation/home.html'
+
+# Vista de PyDucation
+class PyducationView(TemplateView):
+    template_name = 'pyducation.html'
 
 # Vista para listar los elementos del CRUD
 class DataTypeListView(LoginRequiredMixin, ListView):
@@ -39,7 +44,7 @@ class DataTypeDetailView(LoginRequiredMixin, DetailView):
 class DataTypeUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'data_types/data_type_update.html'
     model = DataType
-    fields = ['name', 'description']
+    fields = ['name', 'description', 'example']
     context_object_name = 'data_type'
     success_url = reverse_lazy('data_type_list')
 
@@ -56,6 +61,7 @@ class SignUpView(CreateView):
     template_name = 'registration/signup.html'
     success_url = reverse_lazy('login')
 
+# Vista para la página de inicio de sesión de usuarios
 class LoginView(LoginView):
     template_name = 'registration/login.html'
 
@@ -63,6 +69,7 @@ class LoginView(LoginView):
 class LogoutView(LogoutView):
     template_name = 'registration/logout.html'
 
+# Vista para el perfil del usuario
+class ProfileView(LoginRequiredMixin, TemplateView):
+    template_name = 'PyDucation/profile.html'
 
-class PyducationView(TemplateView):
-    template_name = 'pyducation.html'

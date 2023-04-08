@@ -17,20 +17,25 @@ from django.urls import path, include
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.decorators import login_required
 from blog.views import (HomeView,
+                        PyducationView,
                         DataTypeListView, 
                         DataTypeCreateView, 
                         DataTypeDetailView, 
                         DataTypeUpdateView, 
                         DataTypeDeleteView,
                         SignUpView,
-                        PyducationView,
+                        ProfileView,
                         )
 from django.contrib import admin
 
 
 urlpatterns = [
-    # Vista para la página de inicio de PyDucation
+    # Vista para la página de inicio
     path('', HomeView.as_view(), name='home'),
+
+    # Vista para la página de pyducation
+    path('pyducation/', PyducationView.as_view(), name='pyducation'),
+
 
     # URLs del CRUD de DataType
     path('data_list/', DataTypeListView.as_view(), name='data_type_list'),
@@ -44,10 +49,8 @@ urlpatterns = [
 
     # URLs de autenticación de Django
     path('accounts/', include('django.contrib.auth.urls')),
-
     path('accounts/signup/', SignUpView.as_view(), name='signup'),
     path('accounts/login/', LoginView.as_view(), name='login'),
-
     path('register/', SignUpView.as_view(), name='register'),
-    path('pyducation/', PyducationView.as_view(), name='pyducation'),
+    path('profile/', ProfileView.as_view(), name='profile'),
 ]
