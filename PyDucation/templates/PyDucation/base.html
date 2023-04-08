@@ -17,24 +17,27 @@
     {% block css %}{% endblock %}
 </head>
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{% url 'home' %}">PyDucation</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    {% comment %} Navbar items from your question {% endcomment %}
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a>
-                </li>
-            {% endif %}
-        </ul>
-    </div>
-</nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        {% if user.is_authenticated %}
+            <a class="nav-link text-dark" href="{% url 'pyducation' %}">PyDucation</a>
+        {% else %}
+            <a class="nav-link text-dark" href="{% url 'home' %}">PyDucation</a>
+        {% endif %}
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        {% comment %} Navbar items from your question {% endcomment %}
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="{% url 'logout' %}">Cerrar sesión</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
 
 <div class="container-fluid mt-3">
     {% block content %}{% endblock %}
