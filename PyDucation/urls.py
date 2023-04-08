@@ -49,5 +49,5 @@ urlpatterns = [
     path('accounts/login/', LoginView.as_view(), name='login'),
 
     path('register/', SignUpView.as_view(), name='register'),
-    path('pyducation', PyducationView.as_view(), name='pyducation'),
+    path('pyducation/', PyducationView.as_view(), name='pyducation'),
 ]

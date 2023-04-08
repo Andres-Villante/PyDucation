@@ -59,11 +59,6 @@ class SignUpView(CreateView):
 class LoginView(LoginView):
     template_name = 'registration/login.html'
 
-    # Si el usuario se ha autenticado correctamente, se redirige a la página de inicio de la aplicación
-    def get_success_url(self):
-        return reverse_lazy('pyducation')
-
-
 # Vista para la página de cierre de sesión de usuarios
 class LogoutView(LogoutView):
     template_name = 'registration/logout.html'
