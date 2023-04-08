@@ -1,10 +1,12 @@
 {% extends 'PyDucation/base.html' %}
 
 {% block content %}
-  <h1>{{ data_type.name }}</h1>
-  <p>{{ data_type.description }}</p>
-  <a href="{% url 'data_type_update' pk=data_type.pk %}">Update</a>
-  <br>
-  <a href="{% url 'data_type_delete' pk=data_type.pk %}" onclick="return confirm('¿Está seguro de que desea eliminar este tipo de datos?')"> Eliminar </a>
-  </li>
+  <div class="container">
+    <h1>{{ data_type.name }}</h1>
+    <p>{{ data_type.description|linebreaksbr }}</p>
+    <h2>Ejemplo:</h2>
+    <pre>{{ data_type.example|escape }}</pre>
+    <a href="{% url 'data_type_list' %}">Back to the list of data types</a>
+  </div>
 {% endblock %}
+
