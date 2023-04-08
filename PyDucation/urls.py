@@ -32,7 +32,7 @@ urlpatterns = [
 
     
     # URLs del CRUD de DataType
-    path('data_types/', DataTypeListView.as_view(), name='data_type_list'),
+    path('data_list/', DataTypeListView.as_view(), name='data_type_list'),
     path('data_types/create/', DataTypeCreateView.as_view(), name='data_type_create'),
     path('data_types/<int:pk>/', DataTypeDetailView.as_view(), name='data_type_detail'),
     path('data_types/<int:pk>/update/', DataTypeUpdateView.as_view(), name='data_type_update'),

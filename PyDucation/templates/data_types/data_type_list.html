@@ -1,13 +1,18 @@
-{% extends 'PyDucation/registered_users/base.html' %}
+{% extends 'PyDucation/base.html' %}
 
 {% block content %}
   <h1>Data Types</h1>
   <ul>
     {% for data_type in data_types %}
-      <li><a href="{% url 'data_types:detail' pk=data_type.pk %}">{{ data_type.name }}</a></li>
-    {% empty %}
-      <li>No data types yet.</li>
-    {% endfor %}
-  </ul>
-  <a href="{% url 'data_types:create' %}">Create Data Type</a>
+  <li>
+    <a href="{% url 'data_type_detail' pk=data_type.pk %}">{{ data_type.name }}</a>
+    <a href="{% url 'data_type_delete' pk=data_type.pk %}" onclick="return confirm('¿Está seguro de que desea eliminar este tipo de datos?')"> / Eliminar </a>
+  </li>
+{% empty %}
+  <li>No data types yet.</li>
+{% endfor %}
+</ul>
+<a href="{% url 'data_type_create' %}">Create Data Type</a>
 {% endblock %}
+
+

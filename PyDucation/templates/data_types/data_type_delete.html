@@ -1,11 +1,10 @@
-{% extends 'PyDucation/registered_users/base.html' %}
+{% extends 'PyDucation/base.html' %}
 
 {% block content %}
-  <h1>Delete {{ data_type.name }}</h1>
+  <h1> Removing {{ data_type.name }}</h1>
   <p>Are you sure you want to delete "{{ data_type.name }}"?</p>
   <form method="post">
     {% csrf_token %}
     <button type="submit">Delete</button>
-    <a href="{% url 'data_types:detail' pk=data_type.pk %}">Cancel</a>
   </form>
 {% endblock %}
