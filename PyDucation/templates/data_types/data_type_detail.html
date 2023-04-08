@@ -3,5 +3,8 @@
 {% block content %}
   <h1>{{ data_type.name }}</h1>
   <p>{{ data_type.description }}</p>
-  <a href="{% url 'data_list:update' pk=data_list.pk %}">Update</a>
+  <a href="{% url 'data_type_update' pk=data_type.pk %}">Update</a>
+  <br>
+  <a href="{% url 'data_type_delete' pk=data_type.pk %}" onclick="return confirm('¿Está seguro de que desea eliminar este tipo de datos?')"> Eliminar </a>
+  </li>
 {% endblock %}

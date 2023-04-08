@@ -6,8 +6,7 @@
     {% for data_type in data_types %}
   <li>
     <a href="{% url 'data_type_detail' pk=data_type.pk %}">{{ data_type.name }}</a>
-    <a href="{% url 'data_type_delete' pk=data_type.pk %}" onclick="return confirm('¿Está seguro de que desea eliminar este tipo de datos?')"> / Eliminar </a>
-  </li>
+    
 {% empty %}
   <li>No data types yet.</li>
 {% endfor %}
