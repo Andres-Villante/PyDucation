@@ -25,12 +25,13 @@ from blog.views import (HomeView,
                         SignUpView,
                         PyducationView,
                         )
+from django.contrib import admin
+
 
 urlpatterns = [
     # Vista para la página de inicio de PyDucation
     path('', HomeView.as_view(), name='home'),
 
-    
     # URLs del CRUD de DataType
     path('data_list/', DataTypeListView.as_view(), name='data_type_list'),
     path('data_types/create/', DataTypeCreateView.as_view(), name='data_type_create'),
@@ -38,11 +39,15 @@ urlpatterns = [
     path('data_types/<int:pk>/update/', DataTypeUpdateView.as_view(), name='data_type_update'),
     path('data_types/<int:pk>/delete/', DataTypeDeleteView.as_view(), name='data_type_delete'),
 
-    # URLs de autenticación
+    # URL específica para cierre de sesión de usuarios
+    path('accounts/logout/', LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
+
+    # URLs de autenticación de Django
     path('accounts/', include('django.contrib.auth.urls')),
+
     path('accounts/signup/', SignUpView.as_view(), name='signup'),
     path('accounts/login/', LoginView.as_view(), name='login'),
-    path('accounts/logout/', LogoutView.as_view(), name='logout'),
+
     path('register/', SignUpView.as_view(), name='register'),
     path('pyducation', PyducationView.as_view(), name='pyducation'),
 ]

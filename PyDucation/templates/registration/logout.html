@@ -1,5 +1,7 @@
 {% extends 'PyDucation/base.html' %}
 
-{% block main %}
-    <h1> You logged out of the system. </h1>
+{% block content %}
+    <h1>You have been successfully logged out.</h1>
+    <p>Thank you for using our site.</p>
+    <p>To log in again, please <a href="{% url 'login' %}">click here</a>.</p>
 {% endblock %}

@@ -2,10 +2,10 @@
 
 {% block content %}
   <h1>Pyducation</h1>
-  <p>Bienvenido a Pyducation, aquí podrás interactuar con el CRUD:</p>
+  <p>Welcome to Pyducation, {{ user.username }}! Here you can interact with the CRUD:</p>
   <ul>
     <!-- Data_Types -->
-    <li><a href="{% url 'data_list' %}">Data Types</a></li>
+    <li><a href="{% url 'data_type_list' %}">Data Types</a></li>
 
     <li><a href="{% url 'data_type_create' %}">Crear elemento</a></li>
     

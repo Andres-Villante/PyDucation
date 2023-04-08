@@ -130,6 +130,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # URL para el inicio de sesión de usuario
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/pyducation'
+LOGOUT_REDIRECT_URL = '/accounts/logout/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
