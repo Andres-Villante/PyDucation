@@ -23,8 +23,7 @@ SECRET_KEY = 'django-insecure-1y!wfmb%aoi-z)8!vz)b_e@5f@p0+rjr#nti@cc@e=b0-_&i5i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
 
@@ -56,7 +55,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'PyDucation', 'templates'),
-            'C:\\Users\\Andres\\Desktop\\CURSO\\PyDucation\\pyducation\\templates',
+            os.path.join(BASE_DIR, 'pyducation', 'templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -115,7 +114,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
@@ -129,9 +127,11 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# URL para el inicio de sesión de usuario
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/pyducation'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-

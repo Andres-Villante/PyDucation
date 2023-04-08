@@ -9,9 +9,8 @@ from blog.models import DataType
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views import View
 from django.utils.decorators import method_decorator
-
+from django.views import View
 
 
 class HomeView(TemplateView):
@@ -57,18 +56,18 @@ class SignUpView(CreateView):
     template_name = 'registration/signup.html'
     success_url = reverse_lazy('login')
 
-# Vista para la página de inicio de sesión de usuarios
 class LoginView(LoginView):
     template_name = 'registration/login.html'
 
-    # Si el usuario se ha autenticado correctamente, se redirige a la página de inicio del CRUD
+    # Si el usuario se ha autenticado correctamente, se redirige a la página de inicio de la aplicación
     def get_success_url(self):
-        return reverse_lazy('data_type_list')
+        return reverse_lazy('pyducation')
+
 
 # Vista para la página de cierre de sesión de usuarios
 class LogoutView(LogoutView):
     template_name = 'registration/logout.html'
 
 
-class ProfileView(LoginRequiredMixin, TemplateView):
-    template_name = 'registration/profile.html'
+class PyducationView(TemplateView):
+    template_name = 'pyducation.html'

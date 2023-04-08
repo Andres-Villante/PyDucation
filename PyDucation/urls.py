@@ -23,7 +23,7 @@ from blog.views import (HomeView,
                         DataTypeUpdateView, 
                         DataTypeDeleteView,
                         SignUpView,
-                        ProfileView,
+                        PyducationView,
                         )
 
 urlpatterns = [
@@ -43,9 +43,6 @@ urlpatterns = [
     path('accounts/signup/', SignUpView.as_view(), name='signup'),
     path('accounts/login/', LoginView.as_view(), name='login'),
     path('accounts/logout/', LogoutView.as_view(), name='logout'),
-    path('profile/', ProfileView.as_view(), name='profile'),
     path('register/', SignUpView.as_view(), name='register'),
-    
-
-    
+    path('pyducation', PyducationView.as_view(), name='pyducation'),
 ]

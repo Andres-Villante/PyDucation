@@ -1,0 +1,10 @@
+{% extends 'PyDucation/base.html' %}
+
+{% block content %}
+  <h1>Pyducation</h1>
+  <p>Bienvenido a Pyducation, aquí podrás interactuar con el CRUD:</p>
+  <ul>
+    <li><a href="{% url 'data_type_list' %}">Listar elementos</a></li>
+    <li><a href="{% url 'data_type_create' %}">Crear elemento</a></li>
+  </ul>
+{% endblock %}
