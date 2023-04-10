@@ -31,7 +31,7 @@ class DataTypeListView(LoginRequiredMixin, ListView):
 class DataTypeCreateView(LoginRequiredMixin, CreateView):
     template_name = 'data_types/data_type_create.html'
     model = DataType
-    fields = ['name', 'description', 'example']
+    fields = ['name', 'description','example']
     success_url = reverse_lazy('data_type_list')
 
 # Vista para ver los detalles de un elemento del CRUD
