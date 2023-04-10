@@ -1,11 +1,27 @@
 {% extends 'PyDucation/base.html' %}
+{% load widget_tweaks %}
 
 {% block content %}
   <h1>{% if form.instance.pk %}Edit{% else %}New{% endif %} Math Operator</h1>
   <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Save</button>
+    <div class="form-group">
+      <label for="{{ form.name.id_for_label }}">Name:</label>
+      {% render_field form.name class+="form-control" %}
+    </div>
+    <div class="form-group">
+      <label for="{{ form.symbol.id_for_label }}">Symbol:</label>
+      {% render_field form.symbol class+="form-control" %}
+    </div>
+    <div class="form-group">
+      <label for="{{ form.description.id_for_label }}">Description:</label>
+      {% render_field form.description class+="form-control" rows="3" %}
+    </div>
+    <div class="form-group">
+      <label for="{{ form.example.id_for_label }}">Example:</label>
+      {% render_field form.example class+="form-control" %}
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
     <a href="{% url 'math_operator_list' %}" class="btn btn-secondary">Cancel</a>
   </form>
 {% endblock %}

@@ -2,21 +2,37 @@
 
 {% block content %}
   <h1>Tipos de Datos en Python</h1>
-  <ul>
-    {% for data_type in data_types %}
-  <li>
-    <a href="{% url 'data_type_detail' pk=data_type.pk %}">{{ data_type.name }}</a>
-    
-{% empty %}
-  <li>No data types yet.</li>
-{% endfor %}
-</ul>
-<p>Si eres un programador experimentado y te gustaría ayudar a la comunidad de PyDucation, puedes contribuir con tu conocimiento añadiendo más tipos de datos en Python que no estén en la lista. Si bien esta lista contiene los tipos de datos más comunes, siempre hay más por aprender y descubrir. Además, si encuentras algún error o inexactitud en la lista, por favor, haznoslo saber para que podamos actualizarla. 
-<p>Juntos podemos hacer de PyDucation un recurso aún más valioso para la comunidad de programadores de Python.</p>
-<a href="{% url 'data_type_create' %}">Crear nuevo tipo de dato</a>
-<br>
-<a href="{% url 'pyducation' %}">Atrás</a>
-
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for data_type in data_types %}
+        <tr>
+          <td>{{ data_type.name }}</td>
+          <td>{{ data_type.description }}</td>
+          <td>
+            <a href="{% url 'data_type_detail' pk=data_type.pk %}" class="btn btn-sm btn-info"><i class="fas fa-info-circle"></i> Detalles</a>
+            <a href="{% url 'data_type_update' pk=data_type.pk %}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Editar</a>
+            <form action="{% url 'data_type_delete' pk=data_type.pk %}" method="post" class="d-inline">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Está seguro de que desea eliminar este tipo de datos?')"><i class="fas fa-trash"></i> Eliminar</button>
+            </form>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="3">No se encontraron tipos de datos.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <p>Si eres un programador experimentado y te gustaría ayudar a la comunidad de PyDucation, puedes contribuir con tu conocimiento añadiendo más tipos de datos en Python que no estén en la lista. Si bien esta lista contiene los tipos de datos más comunes, siempre hay más por aprender y descubrir. Además, si encuentras algún error o inexactitud en la lista, por favor, haznoslo saber para que podamos actualizarla. 
+  <p>Juntos podemos hacer de PyDucation un recurso aún más valioso para la comunidad de programadores de Python.</p>
+  <a href="{% url 'data_type_create' %}" class="btn btn-success"><i class="fas fa-plus"></i> Agregar nuevo tipo de dato</a>
+  <a href="{% url 'pyducation' %}" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Atrás</a>
 {% endblock %}
-
-

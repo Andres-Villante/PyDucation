@@ -86,14 +86,14 @@ class MathOperatorListView(ListView):
 class MathOperatorCreateView(CreateView):
     model = MathOperator
     template_name = 'math_operators/math_operator_form.html'
-    fields = ['name', 'symbol', 'description']
+    fields = ['name', 'symbol', 'description', 'example']
     success_url = reverse_lazy('math_operator_list')
 
 
 class MathOperatorUpdateView(UpdateView):
     model = MathOperator
     template_name = 'math_operators/math_operator_form.html'
-    fields = ['name', 'symbol', 'description']
+    fields = ['name', 'symbol', 'description', 'example']
     success_url = reverse_lazy('math_operator_list')
 
 

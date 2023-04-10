@@ -2,14 +2,15 @@
 
 {% block content %}
   <h1>Operadores Matemáticos</h1>
-  <p>Here are the different math operators available:</p>
-  <table>
+  <p>Estos son los diferentes operadores matemáticos disponibles:</p>
+  <table class="table">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Symbol</th>
-        <th>Description</th>
-        <th>Actions</th>
+        <th>Nombre</th>
+        <th>Símbolo</th>
+        <th>Descripción</th>
+        <th>Ejemplo</th>
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
@@ -18,19 +19,19 @@
         <td>{{ math_operator.name }}</td>
         <td>{{ math_operator.symbol }}</td>
         <td>{{ math_operator.description }}</td>
+        <td>{{ math_operator.example }}</td>
         <td>
-          <a href="{% url 'math_operator_update' math_operator.pk %}">Edit</a>
-          <a href="{% url 'math_operator_delete' math_operator.pk %}">Delete</a>
+          <a href="{% url 'math_operator_update' math_operator.pk %}" class="btn btn-primary btn-sm">Edit</a>
+          <a href="{% url 'math_operator_delete' math_operator.pk %}" class="btn btn-danger btn-sm">Delete</a>
         </td>
       </tr>
       {% empty %}
       <tr>
-        <td colspan="4">No math operators found.</td>
+        <td colspan="5">No math operators found.</td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
-  <a href="{% url 'math_operator_create' %}">Agregar un nuevo operador matemático</a>
-  <br>
-  <a href="{% url 'pyducation' %}">Atrás</a>
+  <a href="{% url 'math_operator_create' %}" class="btn btn-success">Agregar un Operador Matemáticos</a>
+  <a href="{% url 'pyducation' %}" class="btn btn-secondary">Atrás</a>
 {% endblock %}

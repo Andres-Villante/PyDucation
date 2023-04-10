@@ -6,12 +6,13 @@
     <p>{{ data_type.description|linebreaksbr }}</p>
     <h2>Ejemplo:</h2>
     <p>{{ data_type.example|linebreaksbr }}</p>
-    <a href="{% url 'data_type_update' pk=data_type.pk %}">Actualizar</a>
-    <br>
-    <a href="{% url 'data_type_delete' pk=data_type.pk %}" onclick="return confirm('¿Está seguro de que desea eliminar este tipo de datos?')">Eliminar</a>
-    <br>
-    <a href="{% url 'data_type_list' %}">Atrás</a>
+    <div class="button-group">
+      <a class="btn btn-primary" href="{% url 'data_type_update' pk=data_type.pk %}">Actualizar</a>
+      <form class="d-inline" action="{% url 'data_type_delete' pk=data_type.pk %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Está seguro de que desea eliminar este tipo de datos?')">Eliminar</button>
+      </form>
+    </div>
+    <a href="{% url 'data_type_list' %}" class="btn btn-secondary mt-3">Volver a la lista</a>
   </div>
 {% endblock %}
-
-

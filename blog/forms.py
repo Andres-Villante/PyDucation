@@ -10,3 +10,17 @@ class DataTypeForm(forms.ModelForm):
         'description': forms.Textarea(attrs={'rows': 3}),
         'example': forms.Textarea(attrs={'rows': 3})
     }
+
+from django import forms
+from .models import MathOperator
+
+class MathOperatorForm(forms.ModelForm):
+    class Meta:
+        model = MathOperator
+        fields = ['name', 'symbol', 'description', 'example']
+        labels = {
+            'name': 'Nombre',
+            'symbol': 'Símbolo',
+            'description': 'Descripción',
+            'example': 'Ejemplo',
+        }
