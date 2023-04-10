@@ -25,6 +25,10 @@ from blog.views import (HomeView,
                         DataTypeDeleteView,
                         SignUpView,
                         ProfileView,
+                        MathOperatorListView,
+                        MathOperatorCreateView,
+                        MathOperatorUpdateView,
+                        MathOperatorDeleteView,
                         )
 from django.contrib import admin
 
@@ -53,4 +57,10 @@ urlpatterns = [
     path('accounts/login/', LoginView.as_view(), name='login'),
     path('register/', SignUpView.as_view(), name='register'),
     path('profile/', ProfileView.as_view(), name='profile'),
+
+
+    path('math_operators/', MathOperatorListView.as_view(), name='math_operator_list'),
+    path('math_operators/create/', MathOperatorCreateView.as_view(), name='math_operator_create'),
+    path('math-operators/<int:pk>/update/', MathOperatorUpdateView.as_view(), name='math_operator_update'),
+    path('math-operators/<int:pk>/delete/', MathOperatorDeleteView.as_view(), name='math_operator_delete'),
 ]

@@ -2,10 +2,16 @@
 
 {% block content %}
   <h1>Pyducation</h1>
-  <p>Welcome to Pyducation, {{ user.username }}! Here you can interact with the CRUD:</p>
-  <ul>
-    <!-- Data_Types -->
-    <li><a href="{% url 'data_type_list' %}">Data Types</a></li>
-  </ul>
+  <p>Bienvenido a Pyducation, {{ user.username }}!</p>
+  <p>Aquí puedes aprender sobre los diferentes tipos de datos que existen en Python, así como sus operaciones básicas. Además, también puedes interactuar con nuestro CRUD (Create, Read, Update, Delete) y poner en práctica tus conocimientos.</p>
+  <p>Para empezar, te invitamos a explorar nuestros tutoriales y ejemplos de los diferentes tipos de datos en Python. Podrás aprender sobre los números, cadenas, listas, tuplas, diccionarios, entre otros.</p>
+  <p>Si ya tienes un conocimiento básico sobre los tipos de datos, puedes avanzar a las operaciones matemáticas en Python. Podrás aprender cómo realizar operaciones como suma, resta, multiplicación, división y más.</p>
+  <p>No te olvides de utilizar nuestro CRUD para practicar y aplicar tus conocimientos. Podrás crear, leer, actualizar y eliminar los diferentes tipos de datos que aprendas.</p>
+  <p>¡Que disfrutes aprendiendo Python en Pyducation!</p>
+  <!-- Data_Types -->
+  <a href="{% url 'data_type_list' %}">Tipos de datos</a>
+  <br>
+  <!-- Math_Operators -->
+  <a href="{% url 'math_operator_list' %}">Operadores Matemáticos</a>
 {% endblock %}
 

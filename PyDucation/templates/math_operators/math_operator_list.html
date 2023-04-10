@@ -1,0 +1,36 @@
+{% extends 'PyDucation/base.html' %}
+
+{% block content %}
+  <h1>Operadores Matemáticos</h1>
+  <p>Here are the different math operators available:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Symbol</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for math_operator in math_operators %}
+      <tr>
+        <td>{{ math_operator.name }}</td>
+        <td>{{ math_operator.symbol }}</td>
+        <td>{{ math_operator.description }}</td>
+        <td>
+          <a href="{% url 'math_operator_update' math_operator.pk %}">Edit</a>
+          <a href="{% url 'math_operator_delete' math_operator.pk %}">Delete</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="4">No math operators found.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'math_operator_create' %}">Agregar un nuevo operador matemático</a>
+  <br>
+  <a href="{% url 'pyducation' %}">Atrás</a>
+{% endblock %}

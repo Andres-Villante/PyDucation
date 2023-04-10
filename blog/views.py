@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
-from blog.models import DataType
+from blog.models import DataType, MathOperator
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from django.utils.decorators import method_decorator
@@ -73,3 +73,31 @@ class LogoutView(LogoutView):
 class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'PyDucation/profile.html'
 
+
+
+
+
+class MathOperatorListView(ListView):
+    model = MathOperator
+    template_name = 'math_operators/math_operator_list.html'
+    context_object_name = 'math_operators'
+
+
+class MathOperatorCreateView(CreateView):
+    model = MathOperator
+    template_name = 'math_operators/math_operator_form.html'
+    fields = ['name', 'symbol', 'description']
+    success_url = reverse_lazy('math_operator_list')
+
+
+class MathOperatorUpdateView(UpdateView):
+    model = MathOperator
+    template_name = 'math_operators/math_operator_form.html'
+    fields = ['name', 'symbol', 'description']
+    success_url = reverse_lazy('math_operator_list')
+
+
+class MathOperatorDeleteView(DeleteView):
+    model = MathOperator
+    template_name = 'math_operators/math_operator_delete.html'
+    success_url = reverse_lazy('math_operator_list')

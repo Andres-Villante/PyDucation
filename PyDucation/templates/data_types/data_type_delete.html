@@ -1,10 +1,10 @@
 {% extends 'PyDucation/base.html' %}
 
 {% block content %}
-  <h1> Removing {{ data_type.name }}</h1>
-  <p>Are you sure you want to delete "{{ data_type.name }}"?</p>
+  <h1> Eliminando {{ data_type.name }}</h1>
+  <p>¿Está seguro que desea borrar "{{ data_type.name }}"?</p>
   <form method="post">
     {% csrf_token %}
-    <button type="submit">Delete</button>
+    <button type="submit">Eliminar</button>
   </form>
 {% endblock %}
