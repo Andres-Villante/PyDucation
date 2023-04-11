@@ -63,4 +63,6 @@ urlpatterns = [
     path('math_operators/create/', MathOperatorCreateView.as_view(), name='math_operator_create'),
     path('math-operators/<int:pk>/update/', MathOperatorUpdateView.as_view(), name='math_operator_update'),
     path('math-operators/<int:pk>/delete/', MathOperatorDeleteView.as_view(), name='math_operator_delete'),
+
+    path('admin/', admin.site.urls),
 ]

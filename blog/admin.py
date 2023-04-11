@@ -1,3 +1,5 @@
 from django.contrib import admin
+from blog.models import DataType, MathOperator
 
-# Register your models here.
+admin.site.register(DataType)
+admin.site.register(MathOperator)
