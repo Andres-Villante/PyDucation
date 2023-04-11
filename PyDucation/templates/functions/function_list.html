@@ -1,0 +1,27 @@
+{% extends 'PyDucation/base.html' %}
+
+{% block content %}
+  <h1>Lista de Funciones</h1>
+
+  <a href="{% url 'function_create' %}" class="btn btn-primary mb-3">Agregar Función</a>
+
+  <ul class="list-group">
+    {% for function in functions %}
+      <li class="list-group-item">
+        <div class="d-flex justify-content-between align-items-center">
+          <h5>{{ function.name }}</h5>
+          <div>
+            <a href="{% url 'function_update' function.pk %}" class="btn btn-primary btn-sm">Editar</a>
+            <a href="{% url 'function_delete' function.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+          </div>
+        </div>
+        <p class="mb-0"><strong>Descripción:</strong> {{ function.description }}</p>
+        <p class="mb-0"><strong>Ejemplo:</strong> {{ function.example }}</p>
+        <p class="mb-0">{{ function.description|linebreaksbr }}</p>
+        <p class="mb-0">{{ function.example|linebreaksbr }}</p>
+      </li>
+    {% empty %}
+      <li class="list-group-item">No hay funciones todavía.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

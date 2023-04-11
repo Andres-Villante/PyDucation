@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
-from blog.models import DataType, MathOperator
+from blog.models import DataType, MathOperator, Function
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from django.utils.decorators import method_decorator
@@ -101,3 +101,37 @@ class MathOperatorDeleteView(DeleteView):
     model = MathOperator
     template_name = 'math_operators/math_operator_delete.html'
     success_url = reverse_lazy('math_operator_list')
+
+
+
+
+class FunctionListView(ListView):
+    model = Function
+    template_name = 'functions/function_list.html'
+    context_object_name = 'functions'
+
+
+class FunctionCreateView(CreateView):
+    model = Function
+    template_name = 'functions/function_form.html'
+    fields = ['name', 'description', 'example']
+    success_url = reverse_lazy('function_list')
+
+
+class FunctionDetailView(DetailView):
+    model = Function
+    template_name = 'functions/function_detail.html'
+    context_object_name = 'function'
+
+
+class FunctionUpdateView(UpdateView):
+    model = Function
+    template_name = 'functions/function_form.html'
+    fields = ['name', 'description', 'example']
+    success_url = reverse_lazy('function_list')
+
+
+class FunctionDeleteView(DeleteView):
+    model = Function
+    template_name = 'functions/function_delete.html'
+    success_url = reverse_lazy('function_list')

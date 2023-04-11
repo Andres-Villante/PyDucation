@@ -1,5 +1,7 @@
 from django import forms
-from blog.models import DataType
+from blog.models import DataType, MathOperator, Function
+from django.utils.text import Truncator
+
 
 class DataTypeForm(forms.ModelForm):
     class Meta:
@@ -11,9 +13,6 @@ class DataTypeForm(forms.ModelForm):
         'example': forms.Textarea(attrs={'rows': 3})
     }
 
-from django import forms
-from .models import MathOperator
-
 class MathOperatorForm(forms.ModelForm):
     class Meta:
         model = MathOperator
@@ -24,3 +23,11 @@ class MathOperatorForm(forms.ModelForm):
             'description': 'Descripción',
             'example': 'Ejemplo',
         }
+
+class FunctionForm(forms.ModelForm):
+    description = models.TextField('Descripción', help_text='Ingrese una descripción para la función', blank=True, null=True)
+    example = forms.CharField(widget=forms.Textarea(attrs={'rows': 3}))
+
+    class Meta:
+        model = Function
+        fields = ['name', 'description', 'example']

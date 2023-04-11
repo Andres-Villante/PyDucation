@@ -1,0 +1,11 @@
+{% extends 'PyDucation/base.html' %}
+
+{% block content %}
+  <h1>Eliminar función</h1>
+  <p>¿Está seguro de que desea eliminar la función "{{ function.name }}"?</p>
+  <form method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a href="{% url 'function_list' %}" class="btn btn-secondary">Cancelar</a>
+  </form>
+{% endblock %}

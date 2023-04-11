@@ -29,16 +29,33 @@ from blog.views import (HomeView,
                         MathOperatorCreateView,
                         MathOperatorUpdateView,
                         MathOperatorDeleteView,
+                        FunctionListView,
+                        FunctionCreateView,
+                        FunctionDetailView,
+                        FunctionUpdateView,
+                        FunctionDeleteView,
                         )
 from django.contrib import admin
 
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
+
     # Vista para la página de inicio
     path('', HomeView.as_view(), name='home'),
 
     # Vista para la página de pyducation
     path('pyducation/', PyducationView.as_view(), name='pyducation'),
+
+    # URLs de autenticación de Django
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/signup/', SignUpView.as_view(), name='signup'),
+    path('accounts/login/', LoginView.as_view(), name='login'),
+    path('register/', SignUpView.as_view(), name='register'),
+    path('profile/', ProfileView.as_view(), name='profile'),
+
+    # URL específica para cierre de sesión de usuarios
+    path('accounts/logout/', LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
 
 
     # URLs del CRUD de DataType
@@ -48,21 +65,19 @@ urlpatterns = [
     path('data_types/<int:pk>/update/', DataTypeUpdateView.as_view(), name='data_type_update'),
     path('data_types/<int:pk>/delete/', DataTypeDeleteView.as_view(), name='data_type_delete'),
 
-    # URL específica para cierre de sesión de usuarios
-    path('accounts/logout/', LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
 
-    # URLs de autenticación de Django
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/signup/', SignUpView.as_view(), name='signup'),
-    path('accounts/login/', LoginView.as_view(), name='login'),
-    path('register/', SignUpView.as_view(), name='register'),
-    path('profile/', ProfileView.as_view(), name='profile'),
-
-
+    # URLs del CRUD de MathOperator 
     path('math_operators/', MathOperatorListView.as_view(), name='math_operator_list'),
     path('math_operators/create/', MathOperatorCreateView.as_view(), name='math_operator_create'),
     path('math-operators/<int:pk>/update/', MathOperatorUpdateView.as_view(), name='math_operator_update'),
     path('math-operators/<int:pk>/delete/', MathOperatorDeleteView.as_view(), name='math_operator_delete'),
 
-    path('admin/', admin.site.urls),
+
+    # URLs del CRUD de MathOperator Function
+    path('functions_list/', FunctionListView.as_view(), name='function_list'),
+    path('functions/create/', FunctionCreateView.as_view(), name='function_create'),
+    path('functions/<int:pk>/', FunctionDetailView.as_view(), name='function_detail'),
+    path('functions/<int:pk>/update/', FunctionUpdateView.as_view(), name='function_update'),
+    path('functions/<int:pk>/delete/', FunctionDeleteView.as_view(), name='function_delete'),
+    
 ]
