@@ -13,6 +13,11 @@ from django.utils.decorators import method_decorator
 from django.views import View
 from django.contrib.auth.forms import UserChangeForm
 
+
+"""
+VISTAS DE PYDUCATION
+"""
+
 # Vista de inicio
 class HomeView(TemplateView):
     template_name = 'PyDucation/home.html'
@@ -20,6 +25,10 @@ class HomeView(TemplateView):
 # Vista de PyDucation
 class PyducationView(TemplateView):
     template_name = 'pyducation.html'
+
+"""
+CRUD de data_types
+"""
 
 # Vista para listar los elementos del CRUD
 class DataTypeListView(LoginRequiredMixin, ListView):
@@ -55,6 +64,11 @@ class DataTypeDeleteView(LoginRequiredMixin, DeleteView):
     context_object_name = 'data_type'
     success_url = reverse_lazy('data_type_list')
 
+
+"""
+AUTENTICACIÓN DE USUARIOS
+"""
+
 # Vista para la página de registro de usuarios
 class SignUpView(CreateView):
     form_class = UserCreationForm
@@ -69,68 +83,75 @@ class LoginView(LoginView):
 class LogoutView(LogoutView):
     template_name = 'registration/logout.html'
 
+
+"""
+PERFIL
+"""
+
 # Vista para el perfil del usuario
-class ProfileView(LoginRequiredMixin, TemplateView):
-    template_name = 'PyDucation/profile.html'
 
 
+"""
+CRUD de math_operators
+"""
 
-
-
+# Vista para listar los operador matemático
 class MathOperatorListView(ListView):
     model = MathOperator
     template_name = 'math_operators/math_operator_list.html'
     context_object_name = 'math_operators'
 
-
+# Vista para crear un operador matemático
 class MathOperatorCreateView(CreateView):
     model = MathOperator
     template_name = 'math_operators/math_operator_form.html'
     fields = ['name', 'symbol', 'description', 'example']
     success_url = reverse_lazy('math_operator_list')
 
-
+# Vista para actualizar un operador matemático
 class MathOperatorUpdateView(UpdateView):
     model = MathOperator
     template_name = 'math_operators/math_operator_form.html'
     fields = ['name', 'symbol', 'description', 'example']
     success_url = reverse_lazy('math_operator_list')
 
-
+# Vista para eliminar un operador matemático
 class MathOperatorDeleteView(DeleteView):
     model = MathOperator
     template_name = 'math_operators/math_operator_delete.html'
     success_url = reverse_lazy('math_operator_list')
 
+"""
+CRUD de functions
+"""
 
-
-
+# Vista para listar las funciones
 class FunctionListView(ListView):
     model = Function
     template_name = 'functions/function_list.html'
     context_object_name = 'functions'
 
-
+# Vista para crear una funcion
 class FunctionCreateView(CreateView):
     model = Function
     template_name = 'functions/function_form.html'
     fields = ['name', 'description', 'example']
     success_url = reverse_lazy('function_list')
 
-
+# Vista para ver los detalles de una funcion
 class FunctionDetailView(DetailView):
     model = Function
     template_name = 'functions/function_detail.html'
     context_object_name = 'function'
 
-
+# Vista para actualizar una funcion
 class FunctionUpdateView(UpdateView):
     model = Function
     template_name = 'functions/function_form.html'
     fields = ['name', 'description', 'example']
     success_url = reverse_lazy('function_list')
 
-
+# Vista para eliminar una funcion
 class FunctionDeleteView(DeleteView):
     model = Function
     template_name = 'functions/function_delete.html'

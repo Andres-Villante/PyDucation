@@ -57,7 +57,6 @@ urlpatterns = [
     # URL específica para cierre de sesión de usuarios
     path('accounts/logout/', LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
 
-
     # URLs del CRUD de DataType
     path('data_list/', DataTypeListView.as_view(), name='data_type_list'),
     path('data_types/create/', DataTypeCreateView.as_view(), name='data_type_create'),
@@ -65,13 +64,11 @@ urlpatterns = [
     path('data_types/<int:pk>/update/', DataTypeUpdateView.as_view(), name='data_type_update'),
     path('data_types/<int:pk>/delete/', DataTypeDeleteView.as_view(), name='data_type_delete'),
 
-
     # URLs del CRUD de MathOperator 
     path('math_operators/', MathOperatorListView.as_view(), name='math_operator_list'),
     path('math_operators/create/', MathOperatorCreateView.as_view(), name='math_operator_create'),
     path('math-operators/<int:pk>/update/', MathOperatorUpdateView.as_view(), name='math_operator_update'),
     path('math-operators/<int:pk>/delete/', MathOperatorDeleteView.as_view(), name='math_operator_delete'),
-
 
     # URLs del CRUD de MathOperator Function
     path('functions_list/', FunctionListView.as_view(), name='function_list'),
