@@ -1,0 +1,10 @@
+{% extends 'PyDucation/base.html' %}
+
+{% block content %}
+  <h1>Delete {{ object.title }}?</h1>
+  <form method="post">
+    {% csrf_token %}
+    <input type="submit" value="Delete">
+    <a href="{% url 'practice_exercise_detail' object.pk %}">Cancel</a>
+  </form>
+{% endblock %}

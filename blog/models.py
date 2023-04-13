@@ -15,3 +15,14 @@ class Function(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     example = models.TextField()
+
+class PracticeExercise(models.Model):
+    LEVEL_CHOICES = [
+        ('facil', 'Fácil'),
+        ('intermedio', 'Intermedio'),
+        ('dificil', 'Difícil'),
+    ]
+
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    level = models.CharField(max_length=20, choices=LEVEL_CHOICES)

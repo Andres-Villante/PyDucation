@@ -6,13 +6,16 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
-from blog.models import DataType, MathOperator, Function
+from blog.models import DataType, MathOperator, Function, PracticeExercise
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.contrib.auth.forms import UserChangeForm
 
+
+def about(request):
+    return render(request, PyDucation/about.html)
 
 """
 VISTAS DE PYDUCATION
@@ -56,14 +59,13 @@ class DataTypeUpdateView(LoginRequiredMixin, UpdateView):
     fields = ['name', 'description', 'example']
     context_object_name = 'data_type'
     success_url = reverse_lazy('data_type_list')
-
+    
 # Vista para eliminar un elemento del CRUD
 class DataTypeDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'data_types/data_type_delete.html'
     model = DataType
     context_object_name = 'data_type'
     success_url = reverse_lazy('data_type_list')
-
 
 """
 AUTENTICACIÓN DE USUARIOS
@@ -156,3 +158,40 @@ class FunctionDeleteView(DeleteView):
     model = Function
     template_name = 'functions/function_delete.html'
     success_url = reverse_lazy('function_list')
+
+
+
+
+
+class PracticeExerciseListView(ListView):
+    template_name = 'practice_exercise/practice_exercise_list.html'
+    model = PracticeExercise
+    context_object_name = 'exercises'
+
+
+class PracticeExerciseCreateView(LoginRequiredMixin, CreateView):
+    template_name = 'practice_exercise/practice_exercise_create.html'
+    model = PracticeExercise
+    fields = ['title', 'description', 'level']
+    success_url = reverse_lazy('practice_exercise_list')
+
+
+class PracticeExerciseDetailView(DetailView):
+    template_name = 'practice_exercise/practice_exercise_detail.html'
+    model = PracticeExercise
+    context_object_name = 'exercise'
+
+
+class PracticeExerciseUpdateView(UpdateView):
+    template_name = 'practice_exercise/practice_exercise_update.html'
+    model = PracticeExercise
+    fields = ['title', 'description', 'level']
+    context_object_name = 'exercise'
+    success_url = reverse_lazy('practice_exercise_list')
+
+
+class PracticeExerciseDeleteView(DeleteView):
+    template_name = 'practice_exercise/practice_exercise_delete.html'
+    model = PracticeExercise
+    context_object_name = 'exercise'
+    success_url = reverse_lazy('practice_exercise_list')

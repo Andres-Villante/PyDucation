@@ -23,6 +23,7 @@
             <a class="nav-link text-dark" href="{% url 'data_type_list' %}">Tipos de Datos</a>
             <a class="nav-link text-dark" href="{% url 'math_operator_list' %}">Operadores Matemáticos</a>
             <a class="nav-link text-dark" href="{% url 'function_list' %}">Funciones</a>
+            <a class="nav-link text-dark mr-auto" href="{% url 'practice_exercise_list' %}">Ejercicios</a>
         {% else %}
             <a class="nav-link text-dark mr-auto" href="{% url 'home' %}">PyDucation</a>
         {% endif %}
@@ -33,11 +34,9 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="{% url 'profile' %}">
-                            <i class="fas fa-user"></i> Perfil
-                        </a>
-                    </li>
+                
+                #FALTA PERFIL
+
                     <li class="nav-item">
                         <a class="nav-link text-dark" href="{% url 'logout' %}">Cerrar sesión</a>
                     </li>

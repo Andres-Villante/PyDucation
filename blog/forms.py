@@ -1,7 +1,5 @@
 from django import forms
-from blog.models import DataType, MathOperator, Function
-from django.utils.text import Truncator
-
+from blog.models import DataType, MathOperator, Function, PracticeExercise
 
 class DataTypeForm(forms.ModelForm):
     class Meta:
@@ -31,3 +29,9 @@ class FunctionForm(forms.ModelForm):
     class Meta:
         model = Function
         fields = ['name', 'description', 'example']
+
+class PracticeExerciseForm(forms.ModelForm):
+    class Meta:
+        model = PracticeExercise
+        fields = ['title', 'description', 'level']
+        labels = {'title': 'Título', 'description': 'Descripción', 'level': 'Nivel'}

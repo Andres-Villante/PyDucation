@@ -1,0 +1,44 @@
+{% extends 'PyDucation/base.html' %}
+
+{% block content %}
+  <h1>Practice Exercises</h1>
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Nivel Fácil</h2>
+      <ul>
+        {% for exercise in easy_exercises %}
+          <li>
+            <a href="{% url 'practice_exercise_detail' exercise.pk %}">{{ exercise.title }}</a>
+          </li>
+        {% empty %}
+          <li>No exercises yet.</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col-md-4">
+      <h2>Nivel Intermedio</h2>
+      <ul>
+        {% for exercise in intermediate_exercises %}
+          <li>
+            <a href="{% url 'practice_exercise_detail' exercise.pk %}">{{ exercise.title }}</a>
+          </li>
+        {% empty %}
+          <li>No exercises yet.</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col-md-4">
+      <h2>Nivel Difícil</h2>
+      <ul>
+        {% for exercise in hard_exercises %}
+          <li>
+            <a href="{% url 'practice_exercise_detail' exercise.pk %}">{{ exercise.title }}</a>
+          </li>
+        {% empty %}
+          <li>No exercises yet.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <a href="{% url 'practice_exercise_create' %}" class="btn btn-primary"><i class="fas fa-plus"></i> Create new exercise</a>
+{% endblock %}

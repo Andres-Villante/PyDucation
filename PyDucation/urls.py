@@ -24,7 +24,6 @@ from blog.views import (HomeView,
                         DataTypeUpdateView, 
                         DataTypeDeleteView,
                         SignUpView,
-                        ProfileView,
                         MathOperatorListView,
                         MathOperatorCreateView,
                         MathOperatorUpdateView,
@@ -34,6 +33,11 @@ from blog.views import (HomeView,
                         FunctionDetailView,
                         FunctionUpdateView,
                         FunctionDeleteView,
+                        PracticeExerciseListView, 
+                        PracticeExerciseCreateView, 
+                        PracticeExerciseDetailView, 
+                        PracticeExerciseUpdateView, 
+                        PracticeExerciseDeleteView,
                         )
 from django.contrib import admin
 
@@ -52,7 +56,6 @@ urlpatterns = [
     path('accounts/signup/', SignUpView.as_view(), name='signup'),
     path('accounts/login/', LoginView.as_view(), name='login'),
     path('register/', SignUpView.as_view(), name='register'),
-    path('profile/', ProfileView.as_view(), name='profile'),
 
     # URL específica para cierre de sesión de usuarios
     path('accounts/logout/', LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
@@ -77,4 +80,11 @@ urlpatterns = [
     path('functions/<int:pk>/update/', FunctionUpdateView.as_view(), name='function_update'),
     path('functions/<int:pk>/delete/', FunctionDeleteView.as_view(), name='function_delete'),
     
+
+    # URLs del CRUD de practice_exercises Function
+    path('practice_exercise_list', PracticeExerciseListView.as_view(), name='practice_exercise_list'),
+    path('practice_exercise/create/', PracticeExerciseCreateView.as_view(), name='practice_exercise_create'),
+    path('practice_exercise/<int:pk>/', PracticeExerciseDetailView.as_view(), name='practice_exercise_detail'),
+    path('practice_exercise/<int:pk>/update/', PracticeExerciseUpdateView.as_view(), name='practice_exercise_update'),
+    path('practice_exercise/<int:pk>/delete/', PracticeExerciseDeleteView.as_view(), name='practice_exercise_delete'),
 ]
