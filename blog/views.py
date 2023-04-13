@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
 from blog.models import DataType, MathOperator, Function, PracticeExercise
@@ -15,7 +15,7 @@ from django.contrib.auth.forms import UserChangeForm
 
 
 def about(request):
-    return render(request, PyDucation/about.html)
+    return render(request, 'PyDucation/about.html')
 
 """
 VISTAS DE PYDUCATION
@@ -59,12 +59,10 @@ class DataTypeUpdateView(LoginRequiredMixin, UpdateView):
     fields = ['name', 'description', 'example']
     context_object_name = 'data_type'
     success_url = reverse_lazy('data_type_list')
-    
+
 # Vista para eliminar un elemento del CRUD
 class DataTypeDeleteView(LoginRequiredMixin, DeleteView):
-    template_name = 'data_types/data_type_delete.html'
     model = DataType
-    context_object_name = 'data_type'
     success_url = reverse_lazy('data_type_list')
 
 """
