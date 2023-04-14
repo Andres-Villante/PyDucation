@@ -3,18 +3,23 @@
 {% block content %}
   <h1>Publicaciones</h1>
   <ul>
-    <a href="{% url 'post_create' %}" class="btn btn-primary">Agregar Publicación</a>
     {% for post in posts %}
       <li>
         <h2>{{ post.title }}</h2>
         <p>{{ post.content }}</p>
         <p>{{ post.author.username }}, {{ post.created_at }}</p>
-        {% if post.image and post.image.url %}
-          <img src="{{ post.image.url }}" alt="imagen de publicación">
+        {% if post.image %}
+          <div style="max-width: 300px; max-height: 300px;">
+            <img src="{{ post.image.url }}" alt="imagen de publicación" style="max-width: 100%; max-height: 100%;">
+          </div>
         {% endif %}
+        <br>
+        <a href="{% url 'post_detail' post.pk %}" class="btn btn-primary">Ver publicación</a>
+        <hr>
       </li>
     {% empty %}
       <p>No hay publicaciones</p>
     {% endfor %}
   </ul>
+  <a href="{% url 'post_create' %}">Crear nueva publicación</a>
 {% endblock %}

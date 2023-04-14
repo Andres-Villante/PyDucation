@@ -29,6 +29,8 @@ class PracticeExercise(models.Model):
     description = models.TextField()
     level = models.CharField(max_length=20, choices=LEVEL_CHOICES)
 
+
+
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
@@ -36,3 +38,9 @@ class Post(models.Model):
     image = models.ImageField(upload_to='post_images', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+class Response(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='responses')
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)

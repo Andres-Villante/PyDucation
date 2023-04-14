@@ -1,0 +1,12 @@
+{% extends 'PyDucation/base.html' %}
+
+{% block content %}
+  <h1>Responder a "{{ post.title }}"</h1>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Enviar</button>
+  </form>
+  <hr>
+  <a href="{% url 'post_detail' post.pk %}" class="btn btn-secondary">Atrás</a>
+{% endblock %}

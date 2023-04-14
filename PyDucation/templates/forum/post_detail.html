@@ -1,0 +1,27 @@
+{% extends 'PyDucation/base.html' %}
+
+{% block content %}
+  <h1>{{ post.title }}</h1>
+  <p>{{ post.content }}</p>
+  <p>{{ post.author.username }}, {{ post.created_at }}</p>
+  {% if post.image %}
+    <img src="{{ post.image.url }}" alt="imagen de publicación">
+  {% endif %}
+  <hr>
+  {% for response in responses %}
+    <div class="card my-2">
+      <div class="card-header">{{ response.author.username }}, {{ response.created_at }}</div>
+      <div class="card-body">
+        <p>{{ response.content }}</p>
+        {% if response.image %}
+          <img src="{{ response.image.url }}" alt="imagen de respuesta">
+        {% endif %}
+      </div>
+    </div>
+  {% empty %}
+    <p>No hay respuestas</p>
+  {% endfor %}
+  <hr>
+  <a href="{% url 'post_list' %}" class="btn btn-secondary">Atrás</a>
+  <a href="{% url 'post_response' post.pk %}" class="btn btn-primary">Responder</a>
+{% endblock %}

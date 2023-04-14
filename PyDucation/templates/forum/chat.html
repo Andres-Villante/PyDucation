@@ -1,0 +1,17 @@
+{% extends 'PyDucation/base.html' %}
+
+{% block content %}
+  <h1>Chat</h1>
+  {% for message in messages %}
+    <div>
+      <h4>{{ message.author.username }}, {{ message.timestamp }}</h4>
+      <p>{{ message.content }}</p>
+    </div>
+  {% endfor %}
+
+  <form method="POST">
+    {% csrf_token %}
+    <input type="text" name="message" placeholder="Escribe un mensaje...">
+    <button type="submit">Enviar</button>
+  </form>
+{% endblock %}

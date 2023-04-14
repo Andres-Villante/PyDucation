@@ -1,18 +1,18 @@
 # Importaciones necesarias
-from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views.generic import ListView, DetailView, View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
-from blog.models import DataType, MathOperator, Function, PracticeExercise, Post
+from blog.models import DataType, MathOperator, Function, PracticeExercise, Post, Response
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from django.utils.decorators import method_decorator
-from django.views import View
 from django.contrib.auth.forms import UserChangeForm
-from blog.forms import PostForm
+from blog.forms import PostForm, ResponseForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def about(request):
@@ -224,4 +224,40 @@ class PostCreateView(LoginRequiredMixin, View):
             post.save()
             return redirect('post_list')
         context = {'form': form}
+        return render(request, self.template_name, context)
+
+class PostDetailView(View):
+    def get(self, request, pk):
+        post = get_object_or_404(Post, pk=pk)
+        responses = Response.objects.filter(post=post)
+        context = {'post': post, 'responses': responses}
+        return render(request, 'forum/post_detail.html', context)
+
+class ChatView(View):
+    def get(self, request):
+        context = {}
+        return render(request, 'forum/chat.html', context)
+
+
+class PostResponseView(LoginRequiredMixin, View):
+    login_url = reverse_lazy('login')
+    form_class = ResponseForm
+    template_name = 'forum/post_response.html'
+
+    def get(self, request, pk):
+        post = get_object_or_404(Post, pk=pk)
+        form = self.form_class()
+        context = {'form': form, 'post': post}
+        return render(request, self.template_name, context)
+
+    def post(self, request, pk):
+        post = get_object_or_404(Post, pk=pk)
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            response = form.save(commit=False)
+            response.post = post
+            response.author = request.user
+            response.save()
+            return redirect('post_detail', pk=post.pk)
+        context = {'form': form, 'post': post}
         return render(request, self.template_name, context)
