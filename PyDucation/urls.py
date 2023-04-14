@@ -28,6 +28,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
+from django.conf.urls.static import static, settings
 from django.urls import path, include
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.decorators import login_required
@@ -73,7 +75,8 @@ urlpatterns = [
     path('register/', SignUpView.as_view(), name='register'),
 
     # URL específica para cierre de sesión de usuarios
-    path('accounts/logout/', LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
+    path('custom_logout/', LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
+
 
     # URLs del CRUD de DataType
     path('data_list/', DataTypeListView.as_view(), name='data_type_list'),

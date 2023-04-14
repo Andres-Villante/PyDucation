@@ -121,7 +121,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR / 'static'),
 ]
 
 # Media files
@@ -131,7 +131,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # URL para el inicio de sesión de usuario
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/pyducation'
-LOGOUT_REDIRECT_URL = '/accounts/logout/'
+LOGOUT_REDIRECT_URL = '/custom_logout/'
 
 
 # Default primary key field type

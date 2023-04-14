@@ -36,10 +36,10 @@
             <ul class="navbar-nav ml-auto">
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <img src="{{ user.profile.image.url }}" alt="Imagen de perfil de {{ user.username }}">
                         <a class="nav-link text-dark" href="{% url 'logout' %}">Cerrar sesión</a>
                     </li>
                 {% endif %}
+
             </ul>
         </div>
     </nav>

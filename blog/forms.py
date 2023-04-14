@@ -35,3 +35,4 @@ class PracticeExerciseForm(forms.ModelForm):
         model = PracticeExercise
         fields = ['title', 'description', 'level']
         labels = {'title': 'Título', 'description': 'Descripción', 'level': 'Nivel'}
+

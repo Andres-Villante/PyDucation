@@ -14,6 +14,7 @@ from django.views import View
 from django.contrib.auth.forms import UserChangeForm
 
 
+
 def about(request):
     return render(request, 'PyDucation/about.html')
 
