@@ -6,13 +6,13 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
-from blog.models import DataType, MathOperator, Function, PracticeExercise
+from blog.models import DataType, MathOperator, Function, PracticeExercise, Post
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.contrib.auth.forms import UserChangeForm
-
+from blog.forms import PostForm
 
 
 def about(request):
@@ -162,6 +162,7 @@ class FunctionDeleteView(DeleteView):
 
 
 
+
 class PracticeExerciseListView(ListView):
     template_name = 'practice_exercise/practice_exercise_list.html'
     model = PracticeExercise
@@ -194,3 +195,33 @@ class PracticeExerciseDeleteView(DeleteView):
     model = PracticeExercise
     context_object_name = 'exercise'
     success_url = reverse_lazy('practice_exercise_list')
+
+
+
+
+
+class PostListView(View):
+    def get(self, request):
+        posts = Post.objects.all()
+        context = {'posts': posts}
+        return render(request, 'forum/post_list.html', context)
+
+class PostCreateView(LoginRequiredMixin, View):
+    login_url = reverse_lazy('login')
+    form_class = PostForm
+    template_name = 'forum/post_form.html'
+
+    def get(self, request):
+        form = self.form_class()
+        context = {'form': form}
+        return render(request, self.template_name, context)
+
+    def post(self, request):
+        form = self.form_class(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return redirect('post_list')
+        context = {'form': form}
+        return render(request, self.template_name, context)

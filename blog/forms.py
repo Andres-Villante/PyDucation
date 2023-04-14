@@ -1,5 +1,5 @@
 from django import forms
-from blog.models import DataType, MathOperator, Function, PracticeExercise
+from blog.models import DataType, MathOperator, Function, PracticeExercise, Post
 
 class DataTypeForm(forms.ModelForm):
     class Meta:
@@ -23,9 +23,6 @@ class MathOperatorForm(forms.ModelForm):
         }
 
 class FunctionForm(forms.ModelForm):
-    description = models.TextField('Descripción', help_text='Ingrese una descripción para la función', blank=True, null=True)
-    example = forms.CharField(widget=forms.Textarea(attrs={'rows': 3}))
-
     class Meta:
         model = Function
         fields = ['name', 'description', 'example']
@@ -36,3 +33,8 @@ class PracticeExerciseForm(forms.ModelForm):
         fields = ['title', 'description', 'level']
         labels = {'title': 'Título', 'description': 'Descripción', 'level': 'Nivel'}
 
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ('title', 'content', 'image')

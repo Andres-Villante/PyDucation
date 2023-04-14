@@ -55,6 +55,8 @@ from blog.views import (HomeView,
                         PracticeExerciseDetailView, 
                         PracticeExerciseUpdateView, 
                         PracticeExerciseDeleteView,
+                        PostListView,
+                        PostCreateView,
                         )
 from django.contrib import admin
 
@@ -105,4 +107,13 @@ urlpatterns = [
     path('practice_exercise/<int:pk>/', PracticeExerciseDetailView.as_view(), name='practice_exercise_detail'),
     path('practice_exercise/<int:pk>/update/', PracticeExerciseUpdateView.as_view(), name='practice_exercise_update'),
     path('practice_exercise/<int:pk>/delete/', PracticeExerciseDeleteView.as_view(), name='practice_exercise_delete'),
-]
+
+
+    # Ruta para la lista de publicaciones
+    path('post_list/', PostListView.as_view(), name='post_list'),
+    # Ruta para la creación de una nueva publicación
+    path('post_list_create/', PostCreateView.as_view(), name='post_create'),
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+

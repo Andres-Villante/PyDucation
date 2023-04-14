@@ -1,0 +1,20 @@
+{% extends 'PyDucation/base.html' %}
+
+{% block content %}
+  <h1>Publicaciones</h1>
+  <ul>
+    <a href="{% url 'post_create' %}" class="btn btn-primary">Agregar Publicación</a>
+    {% for post in posts %}
+      <li>
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.content }}</p>
+        <p>{{ post.author.username }}, {{ post.created_at }}</p>
+        {% if post.image and post.image.url %}
+          <img src="{{ post.image.url }}" alt="imagen de publicación">
+        {% endif %}
+      </li>
+    {% empty %}
+      <p>No hay publicaciones</p>
+    {% endfor %}
+  </ul>
+{% endblock %}

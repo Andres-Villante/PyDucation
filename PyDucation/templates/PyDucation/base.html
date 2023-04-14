@@ -24,7 +24,7 @@
             <a class="nav-link text-dark" href="{% url 'math_operator_list' %}">Operadores Matemáticos</a>
             <a class="nav-link text-dark" href="{% url 'function_list' %}">Funciones</a>
             <a class="nav-link text-dark mr-auto" href="{% url 'practice_exercise_list' %}">Ejercicios</a>
-            <a class="nav-link text-dark mr-auto" href="">Ayuda</a>
+            <a class="nav-link text-dark mr-auto" href="{% url 'post_list' %}">Ayuda</a>
         {% else %}
             <a class="nav-link text-dark mr-auto" href="{% url 'home' %}">PyDucation</a>
         {% endif %}
