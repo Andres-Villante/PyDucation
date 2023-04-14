@@ -2,9 +2,6 @@
 
 {% block content %}
   <h1>Lista de Funciones</h1>
-
-  <a href="{% url 'function_create' %}" class="btn btn-primary mb-3">Agregar Función</a>
-
   <ul class="list-group">
     {% for function in functions %}
       <li class="list-group-item">
@@ -24,4 +21,7 @@
       <li class="list-group-item">No hay funciones todavía.</li>
     {% endfor %}
   </ul>
+  <br>
+  <a href="{% url 'function_create' %}" class="btn btn-success">Agregar Función</a>
+  <a href="{% url 'pyducation' %}" class="btn btn-secondary">Atrás</a>
 {% endblock %}

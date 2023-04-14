@@ -21,5 +21,6 @@
       <p>No hay publicaciones</p>
     {% endfor %}
   </ul>
-  <a href="{% url 'post_create' %}">Crear nueva publicación</a>
+  <a href="{% url 'post_create' %}" class="btn btn-success">Crear nueva publicación</a>
+  <a href="{% url 'pyducation' %}" class="btn btn-secondary">Atrás</a>
 {% endblock %}

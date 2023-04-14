@@ -21,8 +21,8 @@
         <td>{{ math_operator.description }}</td>
         <td>{{ math_operator.example }}</td>
         <td>
-          <a href="{% url 'math_operator_update' math_operator.pk %}" class="btn btn-primary btn-sm">Edit</a>
-          <a href="{% url 'math_operator_delete' math_operator.pk %}" class="btn btn-danger btn-sm">Delete</a>
+          <a href="{% url 'math_operator_update' math_operator.pk %}" class="btn btn-primary btn-sm">Editar</a>
+          <a href="{% url 'math_operator_delete' math_operator.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
         </td>
       </tr>
       {% empty %}
