@@ -50,11 +50,10 @@ from blog.views import (HomeView,
                         FunctionDetailView,
                         FunctionUpdateView,
                         FunctionDeleteView,
-                        PracticeExerciseListView, 
-                        PracticeExerciseCreateView, 
-                        PracticeExerciseDetailView, 
-                        PracticeExerciseUpdateView, 
-                        PracticeExerciseDeleteView,
+                        PracticeExerciseListView,
+                        PracticeExerciseEasyView,
+                        PracticeExerciseIntermediateView,
+                        PracticeExerciseHardView,
                         PostListView,
                         PostCreateView,
                         PostDetailView,
@@ -104,12 +103,11 @@ urlpatterns = [
     path('functions/<int:pk>/delete/', FunctionDeleteView.as_view(), name='function_delete'),
     
 
-    # URLs del CRUD de practice_exercises Function
-    path('practice_exercise_list', PracticeExerciseListView.as_view(), name='practice_exercise_list'),
-    path('practice_exercise/create/', PracticeExerciseCreateView.as_view(), name='practice_exercise_create'),
-    path('practice_exercise/<int:pk>/', PracticeExerciseDetailView.as_view(), name='practice_exercise_detail'),
-    path('practice_exercise/<int:pk>/update/', PracticeExerciseUpdateView.as_view(), name='practice_exercise_update'),
-    path('practice_exercise/<int:pk>/delete/', PracticeExerciseDeleteView.as_view(), name='practice_exercise_delete'),
+    # URLs de practice_exercises 
+    path('ejercicios/', PracticeExerciseListView.as_view(), name='exercise_list'),
+    path('easy/exercises/', PracticeExerciseEasyView.as_view(), name='easy_exercise_list'),
+    path('intermediate_/exercises/', PracticeExerciseIntermediateView.as_view(), name='intermediate_exercise_list'),
+    path('difficult/exercises/', PracticeExerciseHardView.as_view(), name='difficult_exercise_list'),
 
 
     path('post_list/', PostListView.as_view(), name='post_list'),

@@ -162,40 +162,17 @@ class FunctionDeleteView(DeleteView):
 
 
 
+class PracticeExerciseEasyView(TemplateView):
+    template_name = 'practice_exercise/practice_exercise_easy.html'
 
-class PracticeExerciseListView(ListView):
+class PracticeExerciseIntermediateView(TemplateView):
+    template_name = 'practice_exercise/practice_exercise_intermediate.html'
+
+class PracticeExerciseHardView(TemplateView):
+    template_name = 'practice_exercise/practice_exercise_hard.html'
+
+class PracticeExerciseListView(TemplateView):
     template_name = 'practice_exercise/practice_exercise_list.html'
-    model = PracticeExercise
-    context_object_name = 'exercises'
-
-
-class PracticeExerciseCreateView(LoginRequiredMixin, CreateView):
-    template_name = 'practice_exercise/practice_exercise_create.html'
-    model = PracticeExercise
-    fields = ['title', 'description', 'level']
-    success_url = reverse_lazy('practice_exercise_list')
-
-
-class PracticeExerciseDetailView(DetailView):
-    template_name = 'practice_exercise/practice_exercise_detail.html'
-    model = PracticeExercise
-    context_object_name = 'exercise'
-
-
-class PracticeExerciseUpdateView(UpdateView):
-    template_name = 'practice_exercise/practice_exercise_update.html'
-    model = PracticeExercise
-    fields = ['title', 'description', 'level']
-    context_object_name = 'exercise'
-    success_url = reverse_lazy('practice_exercise_list')
-
-
-class PracticeExerciseDeleteView(DeleteView):
-    template_name = 'practice_exercise/practice_exercise_delete.html'
-    model = PracticeExercise
-    context_object_name = 'exercise'
-    success_url = reverse_lazy('practice_exercise_list')
-
 
 
 

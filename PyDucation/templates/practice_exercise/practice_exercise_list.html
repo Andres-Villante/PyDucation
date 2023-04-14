@@ -1,44 +1,19 @@
 {% extends 'PyDucation/base.html' %}
 
 {% block content %}
-  <h1>Practice Exercises</h1>
-  <div class="row">
-    <div class="col-md-4">
-      <h2>Nivel Fácil</h2>
-      <ul>
-        {% for exercise in easy_exercises %}
-          <li>
-            <a href="{% url 'practice_exercise_detail' exercise.pk %}">{{ exercise.title }}</a>
-          </li>
-        {% empty %}
-          <li>No exercises yet.</li>
-        {% endfor %}
-      </ul>
-    </div>
-    <div class="col-md-4">
-      <h2>Nivel Intermedio</h2>
-      <ul>
-        {% for exercise in intermediate_exercises %}
-          <li>
-            <a href="{% url 'practice_exercise_detail' exercise.pk %}">{{ exercise.title }}</a>
-          </li>
-        {% empty %}
-          <li>No exercises yet.</li>
-        {% endfor %}
-      </ul>
-    </div>
-    <div class="col-md-4">
-      <h2>Nivel Difícil</h2>
-      <ul>
-        {% for exercise in hard_exercises %}
-          <li>
-            <a href="{% url 'practice_exercise_detail' exercise.pk %}">{{ exercise.title }}</a>
-          </li>
-        {% empty %}
-          <li>No exercises yet.</li>
-        {% endfor %}
-      </ul>
-    </div>
-  </div>
-  <a href="{% url 'practice_exercise_create' %}" class="btn btn-primary"><i class="fas fa-plus"></i> Create new exercise</a>
+<div class="container mt-3">
+<h1 class="mb-3">¡Bienvenido a PyDucation!</h1>
+<p>En PyDucation te ofrecemos una selección de ejercicios de programación en Python para ayudarte a mejorar tus habilidades y conocimientos. Nuestros ejercicios están organizados en tres niveles de dificultad: fácil, intermedio y difícil. Escoge el nivel que más se ajuste a tus habilidades y comienza a resolver nuestros desafiantes ejercicios.</p>
+<div class="row">
+<div class="col-md-4">
+<a href="{% url 'easy_exercise_list' %}" class="btn btn-primary btn-lg btn-block">Fácil</a>
+</div>
+<div class="col-md-4">
+<a href="{% url 'intermediate_exercise_list' %}" class="btn btn-primary btn-lg btn-block">Intermedio</a>
+</div>
+<div class="col-md-4">
+<a href="{% url 'difficult_exercise_list' %}" class="btn btn-primary btn-lg btn-block">Difícil</a>
+</div>
+</div>
+</div>
 {% endblock %}
