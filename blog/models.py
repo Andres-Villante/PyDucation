@@ -3,9 +3,17 @@ from django.contrib.auth.models import User
 
 
 class DataType(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-    example = models.TextField()
+    name = models.CharField(max_length=255)
+    description = models.TextField(blank=True, null=True)
+    example = models.TextField(blank=True, null=True)
+    created_by = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='data_types_created',
+        null=True,
+        blank=True,
+        default=None,
+    )
 
 class MathOperator(models.Model):
     name = models.CharField(max_length=50)

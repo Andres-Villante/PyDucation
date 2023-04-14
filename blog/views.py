@@ -13,6 +13,9 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.forms import UserChangeForm
 from blog.forms import PostForm, ResponseForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
+from django.http import HttpResponseForbidden
+
 
 
 def about(request):
@@ -47,24 +50,51 @@ class DataTypeCreateView(LoginRequiredMixin, CreateView):
     fields = ['name', 'description','example']
     success_url = reverse_lazy('data_type_list')
 
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
+
+
 # Vista para ver los detalles de un elemento del CRUD
 class DataTypeDetailView(LoginRequiredMixin, DetailView):
     template_name = 'data_types/data_type_detail.html'
     model = DataType
     context_object_name = 'data_type'
 
-# Vista para actualizar un elemento del CRUD
-class DataTypeUpdateView(LoginRequiredMixin, UpdateView):
+class DataTypeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     template_name = 'data_types/data_type_update.html'
     model = DataType
     fields = ['name', 'description', 'example']
     context_object_name = 'data_type'
     success_url = reverse_lazy('data_type_list')
 
-# Vista para eliminar un elemento del CRUD
-class DataTypeDeleteView(LoginRequiredMixin, DeleteView):
+    def test_func(self):
+        obj = self.get_object()
+        if obj.created_by == self.request.user:
+            return True
+        print(f"DEBUG: Access denied to {self.request.user}. {obj.created_by} is the owner.")
+        return False
+
+    def handle_no_permission(self):
+        messages.warning(self.request, 'No tienes permiso para editar este tipo de datos.')
+        return HttpResponseForbidden()
+
+
+class DataTypeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = DataType
     success_url = reverse_lazy('data_type_list')
+
+    def test_func(self):
+        obj = self.get_object()
+        if obj.created_by == self.request.user:
+            return True
+        print(f"DEBUG: Access denied to {self.request.user}. {obj.created_by} is the owner.")
+        return False
+
+    def handle_no_permission(self):
+        messages.warning(self.request, 'No tienes permiso para eliminar este tipo de datos.')
+        return HttpResponseForbidden()
+
 
 """
 AUTENTICACIÓN DE USUARIOS
