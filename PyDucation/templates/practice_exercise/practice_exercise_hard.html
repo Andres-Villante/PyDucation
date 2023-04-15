@@ -1,6 +1,82 @@
 {% extends 'PyDucation/base.html' %}
+{% load static %}
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/exercises.css' %}">
+{% endblock %}
 
 {% block content %}
-    <h1>Ejercicios Intermedios</h1>
-    <p>Aquí van los ejercicios intermedios</p>
+    <h1>Ejercicios Difíciles</h1>
+    <p>En esta sección encontrarás ejercicios de nivel difícil para poner a prueba tus habilidades en Python:</p>
+    <ol class="exercise-list">
+        <li>
+            <h5>Ejercicio 1:</h5>
+            <p>Escribir una función que reciba una lista de números como argumento y devuelva una nueva lista con los números ordenados de mayor a menor.</p>
+            <button class="btn-solucion" onclick="toggle('solucion1')">Solución</button>
+            <div id="solucion1" class="solucion" style="display: none;">
+                <pre><code>
+                    def ordenar_numeros(lista):
+                        lista.sort(reverse=True)
+                        return lista
+                        
+                    numeros = [5, 3, 8, 1, 9, 2]
+                    numeros_ordenados = ordenar_numeros(numeros)
+                    print(numeros_ordenados)
+                </code></pre>
+                <button class="btn-cerrar" onclick="toggle('solucion1')">Cerrar</button>
+            </div>
+        </li>
+        <li>
+            <h5>Ejercicio 2:</h5>
+            <p>Escribir una función que reciba una lista de palabras como argumento y devuelva una nueva lista con las palabras que empiezan y terminan con la misma letra.</p>
+            <button class="btn-solucion" onclick="toggle('solucion2')">Solución</button>
+            <div id="solucion2" class="solucion" style="display: none;">
+                <pre><code>
+                    def palabras_iguales(lista):
+                        palabras_iguales = []
+                        for palabra in lista:
+                            if palabra[0] == palabra[-1]:
+                                palabras_iguales.append(palabra)
+                        return palabras_iguales
+                        
+                    palabras = ["reconocer", "hola", "oso", "python"]
+                    palabras_iguales = palabras_iguales(palabras)
+                    print(palabras_iguales)
+                </code></pre>
+                <button class="btn-cerrar" onclick="toggle('solucion2')">Cerrar</button>
+            </div>
+        </li>
+        <li>
+            <h5>Ejercicio 3:</h5>
+            <p>Escribir una función que reciba una cadena de texto como argumento y devuelva una nueva cadena de texto con las palabras que contengan todas las vocales.</p>
+            <button class="btn-solucion" onclick="toggle('solucion3')">Solución</button>
+            <div id="solucion3" class="solucion" style="display: none;">
+                <pre><code>
+                    def palabras_con_vocales(cadena):
+                        palabras_con_vocales = []
+                        vocales = ['a', 'e', 'i', 'o', 'u']
+                        for palabra in cadena.split():
+                            if all(vocal in palabra for vocal in vocales):
+                                palabras_con_vocales.append(palabra)
+                        return ' '.join(palabras_con_vocales)
+                        
+                    texto = "La tarea de hoy es encontrar una palabra que tenga todas las vocales."
+                    palabras = palabras_con_vocales(texto)
+                    print(palabras)
+                </code></pre>
+                <button class="btn-cerrar" onclick="toggle('solucion3')">Cerrar</button>
+            </div>
+        </li>
+    </ol>
+
+    <script>
+        function toggle(id) {
+            var elemento = document.getElementById(id);
+            if (elemento.style.display == 'block') {
+                elemento.style.display = 'none';
+            } else {
+                elemento.style.display = 'block';
+            }
+        }
+    </script>
 {% endblock %}

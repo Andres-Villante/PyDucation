@@ -1,6 +1,72 @@
 {% extends 'PyDucation/base.html' %}
+{% load static %}
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/exercises.css' %}">
+{% endblock %}
+
 
 {% block content %}
-    <h1>Ejercicios Dificiles</h1>
-    <p>Aquí van los ejercicios dificiles</p>
+    <h1>Ejercicios Intermedios</h1>
+    <p>En esta sección encontrarás ejercicios de nivel intermedio para poner en práctica tus habilidades en Python:</p>
+    <ol class="exercise-list">
+        <li>
+            <h5>Ejercicio 1:</h5>
+            <p>Escribir un programa que reciba una lista de números enteros y devuelva la suma de los elementos de la lista.</p>
+            <button class="btn-solucion" onclick="toggle('solucion1')">Solución</button>
+            <div id="solucion1" class="solucion" style="display: none;">
+                <pre><code>
+                    numeros = [1, 2, 3, 4, 5]
+                    suma = 0
+                    for num in numeros:
+                        suma += num
+                    print("La suma de los números es:", suma)
+                </code></pre>
+                <button class="btn-cerrar" onclick="toggle('solucion1')">Cerrar</button>
+            </div>
+        </li>
+        <li>
+            <h5>Ejercicio 2:</h5>
+            <p>Escribir una función que reciba un número entero positivo y devuelva su factorial.</p>
+            <button class="btn-solucion" onclick="toggle('solucion2')">Solución</button>
+            <div id="solucion2" class="solucion" style="display: none;">
+                <pre><code>
+                    def factorial(num):
+                        if num == 0:
+                            return 1
+                        else:
+                            return num * factorial(num - 1)
+
+                    numero = int(input("Introduce un número entero positivo: "))
+                    print("El factorial de", numero, "es", factorial(numero))
+                </code></pre>
+                <button class="btn-cerrar" onclick="toggle('solucion2')">Cerrar</button>
+            </div>
+        </li>
+        <li>
+            <h5>Ejercicio 3:</h5>
+            <p>Escribir un programa que lea una cadena de texto y la imprima al revés.</p>
+            <button class="btn-solucion" onclick="toggle('solucion3')">Solución</button>
+            <div id="solucion3" class="solucion" style="display: none;">
+                <pre><code>
+                    cadena = input("Introduce una cadena de texto: ")
+                    cadena_invertida = cadena[::-1]
+                    print("La cadena invertida es:", cadena_invertida)
+                </code></pre>
+                <button class="btn-cerrar" onclick="toggle('solucion3')">Cerrar</button>
+            </div>
+        </li>
+    </ol>
+    
+    <script>
+        function toggle(id) {
+            var elemento = document.getElementById(id);
+            if (elemento.style.display == 'block') {
+                elemento.style.display = 'none';
+            } else {
+                elemento.style.display = 'block';
+            }
+        }
+    </script>
 {% endblock %}
+

@@ -1,40 +1,59 @@
 {% extends 'PyDucation/base.html' %}
+{% load static %}
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/exercises.css' %}">
+{% endblock %}
 
 {% block content %}
     <h1>Ejercicios Fáciles</h1>
     <p>En esta sección encontrarás ejercicios de nivel fácil para practicar tus habilidades en Python:</p>
-    <ol>
+    <ol class="exercise-list">
         <li>
+            <h5>Ejercicio 1:</h5>
             <p>Escribir un programa que muestre por pantalla la cadena ¡Hola Mundo!.</p>
-            <pre><code>print("¡Hola Mundo!")</code></pre>
+            <button class="btn-solucion" onclick="toggle('solucion1')">Solución</button>
+            <div id="solucion1" class="solucion" style="display: none;">
+                <pre><code>print("¡Hola Mundo!")</code></pre>
+                <button class="btn-cerrar" onclick="toggle('solucion1')">Cerrar</button>
+            </div>
         </li>
         <li>
-            <!-- Ejercicio 2 -->
+            <h5>Ejercicio 2:</h5>
+            <p>Escribir un programa que calcule el área de un rectángulo de base 5 y altura 10.</p>
+            <button class="btn-solucion" onclick="toggle('solucion2')">Solución</button>
+            <div id="solucion2" class="solucion" style="display: none;">
+                <pre><code>
+                    base = 5
+                    altura = 10
+                    area = base * altura
+                    print("El área del rectángulo es:", area)
+                </code></pre>
+                <button class="btn-cerrar" onclick="toggle('solucion2')">Cerrar</button>
+            </div>
         </li>
         <li>
-            <!-- Ejercicio 3 -->
-        </li>
-        <li>
-            <!-- Ejercicio 4 -->
-        </li>
-        <li>
-            <!-- Ejercicio 5 -->
-        </li>
-        <li>
-            <!-- Ejercicio 6 -->
-        </li>
-        <li>
-            <!-- Ejercicio 7 -->
-        </li>
-        <li>
-            <!-- Ejercicio 8 -->
-        </li>
-        <li>
-            <!-- Ejercicio 9 -->
-        </li>
-        <li>
-            <!-- Ejercicio 10 -->
+            <h5>Ejercicio 3:</h5>
+            <p>Escribir un programa que pida al usuario su nombre y lo salude por pantalla.</p>
+            <button class="btn-solucion" onclick="toggle('solucion3')">Solución</button>
+            <div id="solucion3" class="solucion" style="display: none;">
+                <pre><code>
+                    nombre = input("¿Cuál es tu nombre? ")
+                    print("¡Hola", nombre, "!")
+                </code></pre>
+                <button class="btn-cerrar" onclick="toggle('solucion3')">Cerrar</button>
+            </div>
         </li>
     </ol>
+    
+    <script>
+        function toggle(id) {
+            var elemento = document.getElementById(id);
+            if (elemento.style.display == 'block') {
+                elemento.style.display = 'none';
+            } else {
+                elemento.style.display = 'block';
+            }
+        }
+    </script>
 {% endblock %}
-
