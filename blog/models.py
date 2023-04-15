@@ -18,8 +18,16 @@ class DataType(models.Model):
 class MathOperator(models.Model):
     name = models.CharField(max_length=50)
     symbol = models.CharField(max_length=10)
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True)
     example = models.CharField(max_length=50, blank=True, null=True)
+    created_by = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='math_operators_create',
+        null=True,
+        blank=True,
+        default=None,
+    )
 
 class Function(models.Model):
     name = models.CharField(max_length=100)

@@ -2,11 +2,11 @@
 {% load static %}
 
 {% block css %}
-<link rel="stylesheet" type="text/css" href="{% static 'admin/css/signup.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
 {% endblock %}
 
 {% block content %}
-<h1> User Register </h1>
+<h1> Registro de usuario </h1>
 
 <form method="POST">
 {% csrf_token %}

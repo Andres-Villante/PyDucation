@@ -72,13 +72,10 @@ class DataTypeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         obj = self.get_object()
         if obj.created_by == self.request.user:
             return True
-        print(f"DEBUG: Access denied to {self.request.user}. {obj.created_by} is the owner.")
-        return False
 
     def handle_no_permission(self):
         messages.warning(self.request, 'No tienes permiso para editar este tipo de datos.')
         return HttpResponseForbidden()
-
 
 class DataTypeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = DataType
@@ -88,8 +85,6 @@ class DataTypeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         obj = self.get_object()
         if obj.created_by == self.request.user:
             return True
-        print(f"DEBUG: Access denied to {self.request.user}. {obj.created_by} is the owner.")
-        return False
 
     def handle_no_permission(self):
         messages.warning(self.request, 'No tienes permiso para eliminar este tipo de datos.')
@@ -133,24 +128,54 @@ class MathOperatorListView(ListView):
     context_object_name = 'math_operators'
 
 # Vista para crear un operador matemático
-class MathOperatorCreateView(CreateView):
+class MathOperatorCreateView(LoginRequiredMixin, CreateView):
     model = MathOperator
     template_name = 'math_operators/math_operator_form.html'
     fields = ['name', 'symbol', 'description', 'example']
     success_url = reverse_lazy('math_operator_list')
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
 
 # Vista para actualizar un operador matemático
-class MathOperatorUpdateView(UpdateView):
+class MathOperatorUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = MathOperator
     template_name = 'math_operators/math_operator_form.html'
     fields = ['name', 'symbol', 'description', 'example']
     success_url = reverse_lazy('math_operator_list')
 
+    def test_func(self):
+        obj = self.get_object()
+        if obj.created_by == self.request.user:
+            return True
+
+    def handle_no_permission(self):
+        messages.warning(self.request, 'No tienes permiso para editar este tipo de datos.')
+        return HttpResponseForbidden()
+
 # Vista para eliminar un operador matemático
-class MathOperatorDeleteView(DeleteView):
+class MathOperatorDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = MathOperator
     template_name = 'math_operators/math_operator_delete.html'
     success_url = reverse_lazy('math_operator_list')
+
+    def test_func(self):
+        obj = self.get_object()
+        if obj.created_by == self.request.user:
+            return True
+
+    def handle_no_permission(self):
+        messages.warning(self.request, 'No tienes permiso para eliminar este tipo de datos.')
+        return HttpResponseForbidden()
+
+
+
+
+
+
+
+
 
 """
 CRUD de functions

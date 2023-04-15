@@ -1,4 +1,9 @@
 {% extends 'PyDucation/base.html' %}
+{% load static %}
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/post_list.css' %}">
+{% endblock %}
 
 {% block content %}
   <h1>Publicaciones</h1>
@@ -9,8 +14,8 @@
         <p>{{ post.content }}</p>
         <p>{{ post.author.username }}, {{ post.created_at }}</p>
         {% if post.image %}
-          <div style="max-width: 300px; max-height: 300px;">
-            <img src="{{ post.image.url }}" alt="imagen de publicación" style="max-width: 100%; max-height: 100%;">
+          <div class="post-image">
+            <img src="{{ post.image.url }}" alt="imagen de publicación">
           </div>
         {% endif %}
         <br>
