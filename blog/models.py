@@ -6,7 +6,7 @@ class DataType(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
     example = models.TextField(blank=True, null=True)
-    created_by = models.ForeignKey(
+    data_type_created_by = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
         related_name='data_types_created',
@@ -20,7 +20,7 @@ class MathOperator(models.Model):
     symbol = models.CharField(max_length=10)
     description = models.TextField(blank=True, null=True)
     example = models.CharField(max_length=50, blank=True, null=True)
-    created_by = models.ForeignKey(
+    math_operator_created_by = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
         related_name='math_operators_create',
@@ -33,6 +33,14 @@ class Function(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     example = models.TextField()
+    functions_created_by = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='functions_create',
+        null=True,
+        blank=True,
+        default=None,
+    )
 
 class PracticeExercise(models.Model):
     LEVEL_CHOICES = [

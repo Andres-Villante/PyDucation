@@ -51,7 +51,7 @@ class DataTypeCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('data_type_list')
 
     def form_valid(self, form):
-        form.instance.created_by = self.request.user
+        form.instance.data_type_created_by = self.request.user
         return super().form_valid(form)
 
 
@@ -70,12 +70,12 @@ class DataTypeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         obj = self.get_object()
-        if obj.created_by == self.request.user:
+        if obj.data_type_created_by == self.request.user:
             return True
 
     def handle_no_permission(self):
-        messages.warning(self.request, 'No tienes permiso para editar este tipo de datos.')
         return HttpResponseForbidden()
+
 
 class DataTypeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = DataType
@@ -83,11 +83,10 @@ class DataTypeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         obj = self.get_object()
-        if obj.created_by == self.request.user:
+        if obj.data_type_created_by == self.request.user:
             return True
 
     def handle_no_permission(self):
-        messages.warning(self.request, 'No tienes permiso para eliminar este tipo de datos.')
         return HttpResponseForbidden()
 
 
@@ -135,7 +134,7 @@ class MathOperatorCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('math_operator_list')
 
     def form_valid(self, form):
-        form.instance.created_by = self.request.user
+        form.instance.math_operator_created_by = self.request.user
         return super().form_valid(form)
 
 # Vista para actualizar un operador matemático
@@ -147,7 +146,7 @@ class MathOperatorUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView
 
     def test_func(self):
         obj = self.get_object()
-        if obj.created_by == self.request.user:
+        if obj.math_operator_created_by == self.request.user:
             return True
 
     def handle_no_permission(self):
@@ -162,7 +161,7 @@ class MathOperatorDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView
 
     def test_func(self):
         obj = self.get_object()
-        if obj.created_by == self.request.user:
+        if obj.math_operator_created_by == self.request.user:
             return True
 
     def handle_no_permission(self):
@@ -194,6 +193,10 @@ class FunctionCreateView(CreateView):
     fields = ['name', 'description', 'example']
     success_url = reverse_lazy('function_list')
 
+    def form_valid(self, form):
+        form.instance.functions_created_by = self.request.user
+        return super().form_valid(form)
+
 # Vista para ver los detalles de una funcion
 class FunctionDetailView(DetailView):
     model = Function
@@ -201,17 +204,33 @@ class FunctionDetailView(DetailView):
     context_object_name = 'function'
 
 # Vista para actualizar una funcion
-class FunctionUpdateView(UpdateView):
+class FunctionUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Function
     template_name = 'functions/function_form.html'
     fields = ['name', 'description', 'example']
     success_url = reverse_lazy('function_list')
 
+    def test_func(self):
+        obj = self.get_object()
+        if obj.functions_created_by == self.request.user:
+            return True
+
+    def handle_no_permission(self):
+        return HttpResponseForbidden()
+
 # Vista para eliminar una funcion
-class FunctionDeleteView(DeleteView):
+class FunctionDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Function
     template_name = 'functions/function_delete.html'
     success_url = reverse_lazy('function_list')
+
+    def test_func(self):
+        obj = self.get_object()
+        if obj.functions_created_by == self.request.user:
+            return True
+    
+    def handle_no_permission(self):
+        return HttpResponseForbidden()
 
 
 
