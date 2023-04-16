@@ -18,11 +18,10 @@
           <td>
             <a href="{% url 'data_type_detail' pk=data_type.pk %}" class="btn btn-sm btn-info"><i class="fas fa-info-circle"></i> Detalles</a>
             <a href="{% url 'data_type_update' pk=data_type.pk %}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Editar</a>
-            <form action="{% url 'data_type_delete' pk=data_type.pk %}" method="post" class="d-inline">
+            <form action="{% url 'data_type_delete' pk=data_type.pk %}" method="post" class="d-inline" id="delete-form">
               {% csrf_token %}
-              <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Eliminar</button>
+            <a href="{% url 'data_type_delete' data_type.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
             </form>            
-            </form>
           </td>
         </tr>
       {% empty %}

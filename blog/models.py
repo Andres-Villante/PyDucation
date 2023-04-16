@@ -15,6 +15,9 @@ class DataType(models.Model):
         default=None,
     )
 
+    def __str__(self):
+        return self.name
+
 class MathOperator(models.Model):
     name = models.CharField(max_length=50)
     symbol = models.CharField(max_length=10)
@@ -28,6 +31,9 @@ class MathOperator(models.Model):
         blank=True,
         default=None,
     )
+
+    def __str__(self):
+        return self.name
 
 class Function(models.Model):
     name = models.CharField(max_length=100)

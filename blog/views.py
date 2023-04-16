@@ -88,6 +88,7 @@ class DataTypeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def handle_no_permission(self):
         return HttpResponseForbidden()
 
+
 """
 AUTENTICACIÓN DE USUARIOS
 """
@@ -163,15 +164,7 @@ class MathOperatorDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView
             return True
 
     def handle_no_permission(self):
-        messages.warning(self.request, 'No tienes permiso para eliminar este tipo de datos.')
         return HttpResponseForbidden()
-
-
-
-
-
-
-
 
 
 """

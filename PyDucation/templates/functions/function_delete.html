@@ -5,7 +5,7 @@
   <p>¿Está seguro de que desea eliminar la función "{{ function.name }}"?</p>
   <form method="POST">
     {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <button type="submit" class="btn btn-danger">Si, Eliminar</button>
     <a href="{% url 'function_list' %}" class="btn btn-secondary">Cancelar</a>
   </form>
 {% endblock %}

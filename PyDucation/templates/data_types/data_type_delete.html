@@ -1,11 +1,11 @@
 {% extends 'PyDucation/base.html' %}
 
 {% block content %}
-  <h1>Eliminar tipo de dato</h1>
-  <p>¿Está seguro de que desea eliminar el tipo de dato "{{ data_type.name }}"?</p>
-  <form method="POST">
+  <h1>Eliminar Tipo de Dato</h1>
+  <p>¿Está seguro de que desea eliminar el dato" {{ object }}"?</p>
+  <form method="post">
     {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <button type="submit" class="btn btn-danger">Sí, eliminar</button>
     <a href="{% url 'data_type_list' %}" class="btn btn-secondary">Cancelar</a>
   </form>
 {% endblock %}
