@@ -16,11 +16,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.http import HttpResponseForbidden
 
+# Vista del about "Acerca de mi"
 def about(request):
     return render(request, 'PyDucation/about.html')
 
 """
-VISTAS DE PYDUCATION
+Vistas de PyDucation
 """
 
 # Vista de inicio
@@ -32,65 +33,7 @@ class PyducationView(TemplateView):
     template_name = 'pyducation.html'
 
 """
-CRUD de data_types
-"""
-
-# Vista para listar los elementos del CRUD
-class DataTypeListView(LoginRequiredMixin, ListView):
-    template_name = 'data_types/data_type_list.html'
-    model = DataType
-    context_object_name = 'data_types'
-
-# Vista para crear un elemento del CRUD
-class DataTypeCreateView(LoginRequiredMixin, CreateView):
-    template_name = 'data_types/data_type_create.html'
-    model = DataType
-    fields = ['name', 'description','example']
-    success_url = reverse_lazy('data_type_list')
-
-    def form_valid(self, form):
-        form.instance.data_type_created_by = self.request.user
-        return super().form_valid(form)
-
-
-# Vista para ver los detalles de un elemento del CRUD
-class DataTypeDetailView(LoginRequiredMixin, DetailView):
-    template_name = 'data_types/data_type_detail.html'
-    model = DataType
-    context_object_name = 'data_type'
-
-class DataTypeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    template_name = 'data_types/data_type_update.html'
-    model = DataType
-    fields = ['name', 'description', 'example']
-    context_object_name = 'data_type'
-    success_url = reverse_lazy('data_type_list')
-
-    def test_func(self):
-        obj = self.get_object()
-        if obj.data_type_created_by == self.request.user:
-            return True
-
-    def handle_no_permission(self):
-        return HttpResponseForbidden()
-
-
-class DataTypeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    model = DataType
-    template_name = 'data_types/data_type_delete.html'
-    success_url = reverse_lazy('data_type_list')
-
-    def test_func(self):
-        obj = self.get_object()
-        if obj.data_type_created_by == self.request.user:
-            return True
-    
-    def handle_no_permission(self):
-        return HttpResponseForbidden()
-
-
-"""
-AUTENTICACIÓN DE USUARIOS
+Vistas de registration
 """
 
 # Vista para la página de registro de usuarios
@@ -107,25 +50,80 @@ class LoginView(LoginView):
 class LogoutView(LogoutView):
     template_name = 'registration/logout.html'
 
-
 """
 PERFIL
 """
 
 # Vista para el perfil del usuario
 
+"""
+Vistas del CRUD data_types
+"""
+
+# Vista para listar los tipos de datos 
+class DataTypeListView(LoginRequiredMixin, ListView):
+    template_name = 'data_types/data_type_list.html'
+    model = DataType
+    context_object_name = 'data_types'
+
+# Vista para crear un tipo de dato
+class DataTypeCreateView(LoginRequiredMixin, CreateView):
+    template_name = 'data_types/data_type_create.html'
+    model = DataType
+    fields = ['name', 'description','example']
+    success_url = reverse_lazy('data_type_list')
+
+    def form_valid(self, form):
+        form.instance.data_type_created_by = self.request.user
+        return super().form_valid(form)
+
+# Vista para ver los detalles de un tipo de dato
+class DataTypeDetailView(LoginRequiredMixin, DetailView):
+    template_name = 'data_types/data_type_detail.html'
+    model = DataType
+    context_object_name = 'data_type'
+
+# Vista para actualizar un tipo de dato
+class DataTypeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    template_name = 'data_types/data_type_update.html'
+    model = DataType
+    fields = ['name', 'description', 'example']
+    context_object_name = 'data_type'
+    success_url = reverse_lazy('data_type_list')
+
+    def test_func(self):
+        obj = self.get_object()
+        if obj.data_type_created_by == self.request.user:
+            return True
+
+    def handle_no_permission(self):
+        return HttpResponseForbidden()
+
+# Vista para eliminar un tipo de dato
+class DataTypeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = DataType
+    template_name = 'data_types/data_type_delete.html'
+    success_url = reverse_lazy('data_type_list')
+
+    def test_func(self):
+        obj = self.get_object()
+        if obj.data_type_created_by == self.request.user:
+            return True
+    
+    def handle_no_permission(self):
+        return HttpResponseForbidden()
 
 """
-CRUD de math_operators
+Vistas del CRUD math_operators
 """
 
-# Vista para listar los operador matemático
+# Vista para listar los operadores matemáticos
 class MathOperatorListView(ListView):
     model = MathOperator
     template_name = 'math_operators/math_operator_list.html'
     context_object_name = 'math_operators'
 
-# Vista para crear un operador matemático
+# Vista para crear un operador matemáticos
 class MathOperatorCreateView(LoginRequiredMixin, CreateView):
     model = MathOperator
     template_name = 'math_operators/math_operator_form.html'
@@ -166,9 +164,8 @@ class MathOperatorDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView
     def handle_no_permission(self):
         return HttpResponseForbidden()
 
-
 """
-CRUD de functions
+Vistas del CRUD functions
 """
 
 # Vista para listar las funciones
@@ -177,7 +174,7 @@ class FunctionListView(ListView):
     template_name = 'functions/function_list.html'
     context_object_name = 'functions'
 
-# Vista para crear una funcion
+# Vista para crear una función
 class FunctionCreateView(CreateView):
     model = Function
     template_name = 'functions/function_form.html'
@@ -188,13 +185,13 @@ class FunctionCreateView(CreateView):
         form.instance.functions_created_by = self.request.user
         return super().form_valid(form)
 
-# Vista para ver los detalles de una funcion
+# Vista para ver los detalles de una función
 class FunctionDetailView(DetailView):
     model = Function
     template_name = 'functions/function_detail.html'
     context_object_name = 'function'
 
-# Vista para actualizar una funcion
+# Vista para actualizar una función
 class FunctionUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Function
     template_name = 'functions/function_form.html'
@@ -209,7 +206,7 @@ class FunctionUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def handle_no_permission(self):
         return HttpResponseForbidden()
 
-# Vista para eliminar una funcion
+# Vista para eliminar una función
 class FunctionDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Function
     template_name = 'functions/function_delete.html'
@@ -223,31 +220,38 @@ class FunctionDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def handle_no_permission(self):
         return HttpResponseForbidden()
 
+"""
+Vistas de practice_exercise
+"""
 
-
-
-
-class PracticeExerciseEasyView(TemplateView):
-    template_name = 'practice_exercise/practice_exercise_easy.html'
-
-class PracticeExerciseIntermediateView(TemplateView):
-    template_name = 'practice_exercise/practice_exercise_intermediate.html'
-
-class PracticeExerciseHardView(TemplateView):
-    template_name = 'practice_exercise/practice_exercise_hard.html'
-
+# Vista de lista de ejercicios de práctica
 class PracticeExerciseListView(TemplateView):
     template_name = 'practice_exercise/practice_exercise_list.html'
 
+# Vista de ejercicios de práctica fáciles
+class PracticeExerciseEasyView(TemplateView):
+    template_name = 'practice_exercise/practice_exercise_easy.html'
 
+# Vista de ejercicios de práctica intermedios
+class PracticeExerciseIntermediateView(TemplateView):
+    template_name = 'practice_exercise/practice_exercise_intermediate.html'
 
+# Vista de ejercicios de práctica difíciles
+class PracticeExerciseHardView(TemplateView):
+    template_name = 'practice_exercise/practice_exercise_hard.html'
 
+"""
+Vistas de forum
+"""
+
+# Vista para listar las publicaciones
 class PostListView(View):
     def get(self, request):
         posts = Post.objects.all()
         context = {'posts': posts}
         return render(request, 'forum/post_list.html', context)
 
+# Vista para crear una publicación
 class PostCreateView(LoginRequiredMixin, View):
     login_url = reverse_lazy('login')
     form_class = PostForm
@@ -268,6 +272,7 @@ class PostCreateView(LoginRequiredMixin, View):
         context = {'form': form}
         return render(request, self.template_name, context)
 
+# Vista para los detalles una publicación
 class PostDetailView(View):
     def get(self, request, pk):
         post = get_object_or_404(Post, pk=pk)
@@ -275,12 +280,13 @@ class PostDetailView(View):
         context = {'post': post, 'responses': responses}
         return render(request, 'forum/post_detail.html', context)
 
+# Vista para el chat
 class ChatView(View):
     def get(self, request):
         context = {}
         return render(request, 'forum/chat.html', context)
 
-
+# Vista para las respuestas
 class PostResponseView(LoginRequiredMixin, View):
     login_url = reverse_lazy('login')
     form_class = ResponseForm
