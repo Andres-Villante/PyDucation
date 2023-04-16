@@ -77,16 +77,16 @@ class DataTypeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class DataTypeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = DataType
+    template_name = 'data_types/data_type_delete.html'
     success_url = reverse_lazy('data_type_list')
 
     def test_func(self):
         obj = self.get_object()
         if obj.data_type_created_by == self.request.user:
             return True
-
+    
     def handle_no_permission(self):
         return HttpResponseForbidden()
-
 
 """
 AUTENTICACIÓN DE USUARIOS

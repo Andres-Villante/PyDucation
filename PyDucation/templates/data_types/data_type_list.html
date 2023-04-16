@@ -20,7 +20,8 @@
             <a href="{% url 'data_type_update' pk=data_type.pk %}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Editar</a>
             <form action="{% url 'data_type_delete' pk=data_type.pk %}" method="post" class="d-inline">
               {% csrf_token %}
-              <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Está seguro de que desea eliminar este tipo de datos?')"><i class="fas fa-trash"></i> Eliminar</button>
+              <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Eliminar</button>
+            </form>            
             </form>
           </td>
         </tr>

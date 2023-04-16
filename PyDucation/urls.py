@@ -83,12 +83,12 @@ urlpatterns = [
 
 
     # URLs del CRUD de DataType
-    path('data_list/', DataTypeListView.as_view(), name='data_type_list'),
-    path('data_types/create/', DataTypeCreateView.as_view(), name='data_type_create'),
-    path('data_types/<int:pk>/', DataTypeDetailView.as_view(), name='data_type_detail'),
-    path('data_types/<int:pk>/update/', DataTypeUpdateView.as_view(), name='data_type_update'),
-    path('data_types/<int:pk>/delete/', DataTypeDeleteView.as_view(), name='data_type_delete'),
-
+    path('data-types/', DataTypeListView.as_view(), name='data_type_list'),
+    path('data-types/create/', DataTypeCreateView.as_view(), name='data_type_create'),
+    path('data-types/<int:pk>/', DataTypeDetailView.as_view(), name='data_type_detail'),
+    path('data-types/<int:pk>/update/', DataTypeUpdateView.as_view(), name='data_type_update'),
+    path('data-types/<int:pk>/delete/', DataTypeDeleteView.as_view(), name='data_type_delete'),
+    
     # URLs del CRUD de MathOperator 
     path('math_operators/', MathOperatorListView.as_view(), name='math_operator_list'),
     path('math_operators/create/', MathOperatorCreateView.as_view(), name='math_operator_create'),
