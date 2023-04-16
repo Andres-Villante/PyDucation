@@ -147,7 +147,6 @@ class MathOperatorUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView
             return True
 
     def handle_no_permission(self):
-        messages.warning(self.request, 'No tienes permiso para editar este tipo de datos.')
         return HttpResponseForbidden()
 
 # Vista para eliminar un operador matemático
@@ -177,7 +176,7 @@ class FunctionListView(ListView):
 # Vista para crear una función
 class FunctionCreateView(CreateView):
     model = Function
-    template_name = 'functions/function_form.html'
+    template_name = 'functions/function_create.html'
     fields = ['name', 'description', 'example']
     success_url = reverse_lazy('function_list')
 
@@ -194,7 +193,7 @@ class FunctionDetailView(DetailView):
 # Vista para actualizar una función
 class FunctionUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Function
-    template_name = 'functions/function_form.html'
+    template_name = 'functions/function_update.html'
     fields = ['name', 'description', 'example']
     success_url = reverse_lazy('function_list')
 

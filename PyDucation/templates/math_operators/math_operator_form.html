@@ -2,26 +2,27 @@
 {% load widget_tweaks %}
 
 {% block content %}
-  <h1>{% if form.instance.pk %}Edit{% else %}New{% endif %} Math Operator</h1>
+
+  <h1>{% if form.instance.pk %}Editar{% else %}Nueva{% endif %} Operación Matemática</h1>
   <form method="post">
     {% csrf_token %}
     <div class="form-group">
-      <label for="{{ form.name.id_for_label }}">Name:</label>
+      <label for="{{ form.name.id_for_label }}">Nombre:</label>
       {% render_field form.name class+="form-control" %}
     </div>
     <div class="form-group">
-      <label for="{{ form.symbol.id_for_label }}">Symbol:</label>
+      <label for="{{ form.symbol.id_for_label }}">Símbolo:</label>
       {% render_field form.symbol class+="form-control" %}
     </div>
     <div class="form-group">
-      <label for="{{ form.description.id_for_label }}">Description:</label>
+      <label for="{{ form.description.id_for_label }}">Descripción:</label>
       {% render_field form.description class+="form-control" rows="3" %}
     </div>
     <div class="form-group">
-      <label for="{{ form.example.id_for_label }}">Example:</label>
+      <label for="{{ form.example.id_for_label }}">Ejemplo:</label>
       {% render_field form.example class+="form-control" %}
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-    <a href="{% url 'math_operator_list' %}" class="btn btn-secondary">Cancel</a>
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+    <a href="{% url 'math_operator_list' %}" class="btn btn-secondary">Cancelar</a>
   </form>
 {% endblock %}
