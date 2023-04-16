@@ -2,23 +2,23 @@
 {% load static %}
 
 {% block css %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login-signup.css' %}">
 {% endblock %}
+
 
 {% block content %}
-<h1> Registro de usuario </h1>
-
-<form method="POST">
-{% csrf_token %}
-{% for field in form %}
-    <p class="fieldWrapper">
+  <h1>Registro de usuario</h1>
+  <form method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+      <p class="fieldWrapper">
         {{ field.errors }}
         {{ field.label_tag }} {{ field }}
-    </p>
-{% endfor %}
-<input type="submit" value="Registrarme">
-</form>
-
+      </p>
+    {% endfor %}
+    <input type="submit" value="Registrarme">
+  </form>
 {% endblock %}
+
 
 

@@ -16,8 +16,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.http import HttpResponseForbidden
 
-
-
 def about(request):
     return render(request, 'PyDucation/about.html')
 
