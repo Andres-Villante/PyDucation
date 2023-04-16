@@ -16,9 +16,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.http import HttpResponseForbidden
 
-# Vista del about "Acerca de mi"
-def about(request):
+# Vista del about "Acerca del autor"
+def About(request):
     return render(request, 'PyDucation/about.html')
+
 
 """
 Vistas de PyDucation
@@ -30,7 +31,7 @@ class HomeView(TemplateView):
 
 # Vista de PyDucation
 class PyducationView(TemplateView):
-    template_name = 'pyducation.html'
+    template_name = 'PyDucation/pyducation.html'
 
 """
 Vistas de registration

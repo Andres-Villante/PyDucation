@@ -33,7 +33,8 @@ from django.conf.urls.static import static, settings
 from django.urls import path, include
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.decorators import login_required
-from blog.views import (HomeView,
+from blog.views import (About,
+                        HomeView,
                         PyducationView,
                         DataTypeListView, 
                         DataTypeCreateView, 
@@ -64,6 +65,9 @@ from django.contrib import admin
 
 
 urlpatterns = [
+
+    path('about/', About, name='about'),
+
     path('admin/', admin.site.urls),
 
     # Vista para la página de inicio
@@ -115,8 +119,6 @@ urlpatterns = [
     path('<int:pk>/', PostDetailView.as_view(), name='post_detail'),
     path('<int:pk>/response/', PostResponseView.as_view(), name='post_response'),
     path('chat/', ChatView.as_view(), name='chat'),
-
-
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

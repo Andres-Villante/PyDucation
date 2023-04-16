@@ -43,11 +43,35 @@
                 </ul>
             </div>
         </nav>
-        
         <div class="container-fluid mt-3">
             {% block content %}{% endblock %}
+            <footer class="mt-5 pt-4 border-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md">
+                            <h5>PyDucation</h5>
+                            <small class="d-block mb-3 text-muted">&copy; 2023</small>
+                        </div>
+                        <div class="col-6 col-md">
+                            {% if user.is_authenticated %}
+                            <h5>Enlaces</h5>
+                            <ul class="list-unstyled text-small">
+                                <li><a class="text-muted" href="{% url 'pyducation' %}">Inicio</a></li>
+                                <li><a class="text-muted" href="{% url 'about' %}">Acerca del autor</a></li>
+                            </ul>
+                            {% endif %}
+                        </div>
+                        <div class="col-6 col-md">
+                            <h5>Contacto</h5>
+                            <ul class="list-unstyled text-small">
+                                <li>Teléfono: +54 9 11 6642-5882</li>
+                                <li>Correo electrónico: andres.villante@gmail.com</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>            
         </div>
-
         <!-- jQuery, Popper.js, Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
