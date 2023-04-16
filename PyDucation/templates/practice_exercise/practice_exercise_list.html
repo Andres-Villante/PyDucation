@@ -1,19 +1,22 @@
 {% extends 'PyDucation/base.html' %}
 
 {% block content %}
-<div class="container mt-3">
-<h1 class="mb-3">¡Bienvenido a PyDucation!</h1>
-<p>En PyDucation te ofrecemos una selección de ejercicios de programación en Python para ayudarte a mejorar tus habilidades y conocimientos. Nuestros ejercicios están organizados en tres niveles de dificultad: fácil, intermedio y difícil. Escoge el nivel que más se ajuste a tus habilidades y comienza a resolver nuestros desafiantes ejercicios.</p>
-<div class="row">
-<div class="col-md-4">
-<a href="{% url 'easy_exercise_list' %}" class="btn btn-primary btn-lg btn-block">Fácil</a>
-</div>
-<div class="col-md-4">
-<a href="{% url 'intermediate_exercise_list' %}" class="btn btn-primary btn-lg btn-block">Intermedio</a>
-</div>
-<div class="col-md-4">
-<a href="{% url 'difficult_exercise_list' %}" class="btn btn-primary btn-lg btn-block">Difícil</a>
-</div>
-</div>
-</div>
+  <div class="container mt-3">
+    <h1 class="text-center mb-3">¡Ejercicios de Python para mejorar tus habilidades!</h1>
+    <p class="text-center">En PyDucation te ofrecemos una selección de ejercicios de programación en Python para ayudarte a mejorar tus habilidades y conocimientos. Nuestros ejercicios están organizados en tres niveles de dificultad: fácil, intermedio y difícil. Escoge el nivel que más se ajuste a tus habilidades y comienza a resolver nuestros desafiantes ejercicios.</p>
+    <div class="row">
+      <div class="col-md-4">
+        <a href="{% url 'easy_exercise_list' %}" class="btn btn-primary btn-lg btn-block">Fácil</a>
+      </div>
+      <div class="col-md-4">
+        <a href="{% url 'intermediate_exercise_list' %}" class="btn btn-primary btn-lg btn-block">Intermedio</a>
+      </div>
+      <div class="col-md-4">
+        <a href="{% url 'difficult_exercise_list' %}" class="btn btn-primary btn-lg btn-block">Difícil</a>
+      </div>
+    </div>
+    <div class="mt-3">
+        <a href="{% url 'pyducation' %}" class="btn btn-secondary">Atrás</a>
+    </div>
+  </div>
 {% endblock %}

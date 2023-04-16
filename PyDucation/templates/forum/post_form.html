@@ -1,10 +1,26 @@
 {% extends 'PyDucation/base.html' %}
+{% load widget_tweaks %}
 
 {% block content %}
   <h1>Nueva publicación</h1>
-  <form method="POST" enctype="multipart/form-data">
+  <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Publicar</button>
+    <div class="form-group">
+      <label for="{{ form.title.id_for_label }}">Título:</label>
+      {% render_field form.title class+="form-control" %}
+    </div>
+    <div class="form-group">
+      <label for="{{ form.content.id_for_label }}">Contenido:</label>
+      {% render_field form.content class+="form-control" rows="5" %}
+    </div>
+    <div class="form-group">
+      <label for="{{ form.image.id_for_label }}">Imagen:</label>
+      <div class="custom-file">
+        {% render_field form.image class+="custom-file-input" %}
+        <label class="custom-file-label" for="{{ form.image.id_for_label }}">Seleccionar archivo...</label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Publicar</button>
+    <a href="{% url 'post_list' %}" class="btn btn-secondary">Cancelar</a>
   </form>
 {% endblock %}

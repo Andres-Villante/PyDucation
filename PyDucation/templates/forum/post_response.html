@@ -1,12 +1,15 @@
 {% extends 'PyDucation/base.html' %}
+{% load widget_tweaks %}
 
 {% block content %}
   <h1>Responder a "{{ post.title }}"</h1>
-  <form method="POST" enctype="multipart/form-data">
+  <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    <div class="form-group">
+      <label for="{{ form.content.id_for_label }}">Contenido:</label>
+      {% render_field form.content class+="form-control" rows="5" %}
+    </div>
     <button type="submit" class="btn btn-primary">Enviar</button>
+    <a href="{% url 'post_detail' post.pk %}" class="btn btn-secondary">Atrás</a>
   </form>
-  <hr>
-  <a href="{% url 'post_detail' post.pk %}" class="btn btn-secondary">Atrás</a>
 {% endblock %}

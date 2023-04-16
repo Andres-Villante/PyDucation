@@ -22,6 +22,6 @@
     <p>No hay respuestas</p>
   {% endfor %}
   <hr>
-  <a href="{% url 'post_list' %}" class="btn btn-secondary">Atrás</a>
   <a href="{% url 'post_response' post.pk %}" class="btn btn-primary">Responder</a>
+  <a href="{% url 'post_list' %}" class="btn btn-secondary">Atrás</a>
 {% endblock %}
