@@ -13,8 +13,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
             integrity="sha512-N8CdPPrhKlJx9EB+XWpFN8drU6VnJjgim+2MUWU6IbMkn7xK0PW0vyXNpW8pBzpe6EMfC6/56BLQdWNN6Q4G7Q=="
             crossorigin="anonymous" />
-
-        {% block css %}{% endblock %}
+        {% block css %}{% endblock %}  
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -35,42 +34,42 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="{% url 'logout' %}">Cerrar sesión</a>
-                        </li>
+                    <li class="nav-item d-flex justify-content-end">
+                        <a class="nav-link text-dark mr-3" href="#">Perfil</a>
+                        <a class="nav-link text-dark" href="{% url 'logout' %}">Cerrar sesión</a>
+                    </li>
                     {% endif %}
-
                 </ul>
             </div>
         </nav>
         <div class="container-fluid mt-3">
             {% block content %}{% endblock %}
-            <footer class="mt-5 pt-4 border-top">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 col-md">
-                            <h5>PyDucation</h5>
-                            <small class="d-block mb-3 text-muted">&copy; 2023</small>
-                        </div>
-                        <div class="col-6 col-md">
-                            {% if user.is_authenticated %}
-                            <h5>Enlaces</h5>
-                            <ul class="list-unstyled text-small">
-                                <li><a class="text-muted" href="{% url 'pyducation' %}">Inicio</a></li>
-                                <li><a class="text-muted" href="{% url 'about' %}">Acerca del autor</a></li>
-                            </ul>
-                            {% endif %}
-                        </div>
-                        <div class="col-6 col-md">
-                            <h5>Contacto</h5>
-                            <ul class="list-unstyled text-small">
-                                <li>Teléfono: +54 9 11 6642-5882</li>
-                                <li>Correo electrónico: andres.villante@gmail.com</li>
-                            </ul>
+            {% if user.is_authenticated %}
+                <footer class="mt-5 pt-4 border-top">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 col-md">
+                                <h5>PyDucation</h5>
+                                <small class="d-block mb-3 text-muted">&copy; 2023</small>
+                            </div>
+                            <div class="col-6 col-md">
+                                <h5>Enlaces</h5>
+                                <ul class="list-unstyled text-small">
+                                    <li><a class="text-muted" href="{% url 'pyducation' %}">Inicio</a></li>
+                                    <li><a class="text-muted" href="{% url 'about' %}">Acerca del autor</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-6 col-md">
+                                <h5>Contacto</h5>
+                                <ul class="list-unstyled text-small">
+                                    <li>Teléfono: +54 9 11 6642-5882</li>
+                                    <li>Correo electrónico: andres.villante@gmail.com</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </footer>            
+                </footer>  
+            {% endif %}
         </div>
         <!-- jQuery, Popper.js, Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
