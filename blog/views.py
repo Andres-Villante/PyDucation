@@ -13,7 +13,6 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.forms import UserChangeForm
 from blog.forms import PostForm, ResponseForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib import messages
 from django.http import HttpResponseForbidden
 
 # Vista del about "Acerca del autor"
