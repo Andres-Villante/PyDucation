@@ -1,0 +1,89 @@
+.profile-image {
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .navbar-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+/* Estilos para el cuerpo de la página */
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
+    line-height: 1.5;
+  }
+  
+  /* Estilos para los encabezados */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 1em 0;
+  }
+  
+  /* Estilos para los enlaces */
+  a {
+    color: #0074d9;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Estilos para las imágenes */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Estilos para las tablas */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+  }
+  
+  td, th {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #eceeef;
+  }
+  
+  th {
+    font-weight: bold;
+    text-align: left;
+    background-color: #f7f7f9;
+  }
+  
+  /* Estilos para los formularios */
+  input, textarea, select {
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: #464a4c;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  }
+  
+  input:focus, textarea:focus, select:focus {
+    border-color: #0074d9;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0, 116, 217, 0.25);
+  }
+
+  .navbar {
+    font-size: 1.2rem;
+  }
+  

@@ -1,0 +1,34 @@
+{% extends 'PyDucation/base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <h1 class="text-center mb-4">Crear Perfil</h1>
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="{{ form.full_name.id_for_label }}">Nombre Completo</label>
+              {% render_field form.full_name class+="form-control" %}
+            </div>
+            <div class="form-group">
+              <label for="{{ form.nationality.id_for_label }}">Nacionalidad</label>
+              {% render_field form.nationality class+="form-control" %}
+            </div>
+            <div class="form-group">
+              <label for="{{ form.bio.id_for_label }}">Biografía</label>
+              {% render_field form.bio class+="form-control" %}
+            </div>
+            <div class="form-group">
+              <label for="{{ form.profile_pic.id_for_label }}">Foto de Perfil</label>
+              {% render_field form.profile_pic class+="form-control-file" %}
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

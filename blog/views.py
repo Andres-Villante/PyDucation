@@ -6,14 +6,15 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
-from blog.models import DataType, MathOperator, Function, PracticeExercise, Post, Response
+from blog.models import DataType, MathOperator, Function, PracticeExercise, Post, Response, Profile
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.forms import UserChangeForm
-from blog.forms import PostForm, ResponseForm
+from blog.forms import PostForm, ResponseForm, ProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, HttpResponseRedirect
+from django.contrib import messages
 
 # Vista del about "Acerca del autor"
 def About(request):
@@ -54,7 +55,52 @@ class LogoutView(LogoutView):
 PERFIL
 """
 
-# Vista para el perfil del usuario
+
+class ProfileCreateView(LoginRequiredMixin, CreateView):
+    template_name = 'profile/profile_create.html'
+    model = Profile
+    form_class = ProfileForm
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('profile_detail', kwargs={'pk': self.object.pk})
+
+    def form_invalid(self, form):
+        print(form.errors)
+        return super().form_invalid(form)
+
+class ProfileDetailView(LoginRequiredMixin, TemplateView):
+    template_name = 'profile/profile_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        profile = self.request.user.profile
+        if not profile:
+            context['form'] = ProfileForm()
+        else:
+            context['profile'] = profile
+            context['form'] = ProfileForm(instance=profile)
+        return context
+
+class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+    model = Profile
+    form_class = ProfileForm
+    template_name = 'profile/profile_update.html'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        self.object = form.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+    def get_object(self):
+        return self.request.user.profile
+
+    def get_success_url(self):
+        return reverse_lazy('profile_detail', kwargs={'pk': self.object.pk})
+
 
 """
 Vistas del CRUD data_types

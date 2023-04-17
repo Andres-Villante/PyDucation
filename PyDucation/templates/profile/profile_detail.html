@@ -1,0 +1,21 @@
+{% extends 'PyDucation/base.html' %}
+
+{% load widget_tweaks %}
+{% block content %}
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <h1 class="text-center mb-4">Detalles del Perfil</h1>
+          <img src="{{ profile.profile_pic.url }}" alt="Profile Picture" class="mx-auto d-block" style="max-width: 500px; max-height: 500px;">
+          <p><strong>Nombre Completo:</strong> {{ profile.full_name }}</p>
+          <p><strong>Nacionalidad:</strong> {{ profile.nationality }}</p>
+          <p><strong>Biografía:</strong> {{ profile.bio }}</p>
+          <a href="{% url 'profile_update' profile.pk %}" class="btn btn-primary">Actualizar Perfil</a>
+          <a href="{% url 'home' %}" class="btn btn-secondary">Volver a PyDucation</a>        
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+

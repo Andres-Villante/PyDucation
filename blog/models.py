@@ -1,7 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    full_name = models.CharField(max_length=100)
+    nationality = models.CharField(max_length=50)
+    bio = models.TextField()
+    profile_pic = models.ImageField(upload_to='profile_pics/', default='profile_pics/default_profile_pic.jpg')
 
+
+    
 class DataType(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
@@ -58,8 +66,6 @@ class PracticeExercise(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     level = models.CharField(max_length=20, choices=LEVEL_CHOICES)
-
-
 
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)

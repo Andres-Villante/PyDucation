@@ -33,8 +33,7 @@ from django.conf.urls.static import static, settings
 from django.urls import path, include
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.decorators import login_required
-from blog.views import (About,
-                        HomeView,
+from blog.views import (HomeView,
                         PyducationView,
                         DataTypeListView, 
                         DataTypeCreateView, 
@@ -42,6 +41,9 @@ from blog.views import (About,
                         DataTypeUpdateView, 
                         DataTypeDeleteView,
                         SignUpView,
+                        ProfileCreateView,
+                        ProfileDetailView,
+                        ProfileUpdateView,
                         MathOperatorListView,
                         MathOperatorCreateView,
                         MathOperatorUpdateView,
@@ -60,15 +62,17 @@ from blog.views import (About,
                         PostDetailView,
                         ChatView,
                         PostResponseView,
+                        About,
                         )
 from django.contrib import admin
 
 
 urlpatterns = [
 
-    path('about/', About, name='about'),
 
     path('admin/', admin.site.urls),
+
+
 
     # Vista para la página de inicio
     path('', HomeView.as_view(), name='home'),
@@ -81,6 +85,12 @@ urlpatterns = [
     path('accounts/signup/', SignUpView.as_view(), name='signup'),
     path('accounts/login/', LoginView.as_view(), name='login'),
     path('register/', SignUpView.as_view(), name='register'),
+
+    # URLs de perfil
+    path('profile/create/', ProfileCreateView.as_view(), name='profile_create'),
+    path('profile/<int:pk>/', ProfileDetailView.as_view(), name='profile_detail'),
+    path('profile/<int:pk>/update/', ProfileUpdateView.as_view(), name='profile_update'),
+
 
     # URL específica para cierre de sesión de usuarios
     path('custom_logout/', LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
@@ -119,6 +129,10 @@ urlpatterns = [
     path('<int:pk>/', PostDetailView.as_view(), name='post_detail'),
     path('<int:pk>/response/', PostResponseView.as_view(), name='post_response'),
     path('chat/', ChatView.as_view(), name='chat'),
+
+    
+    path('about/', About, name='about'),
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
