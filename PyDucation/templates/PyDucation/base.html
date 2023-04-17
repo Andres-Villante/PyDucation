@@ -45,7 +45,7 @@
                     </div>
                     {% else %}
                     <div class="d-flex align-items-center">
-                        <a class="nav-link navbar-text text-dark" href="{% url 'profile_detail' user.profile.pk %}">Perfil</a>
+                        <a class="nav-link navbar-text text-dark" href="{% if user.profile %}{% url 'profile_detail' user.profile.pk %}{% else %}{% url 'profile_create' %}{% endif %}">Perfil</a>
                         <a class="nav-link" href="{% url 'profile_create' %}">
                             <img src="{% static 'images/default_profile_picture.png' %}" class="img-thumbnail profile-image" style="height: 40px;">
                         </a>
