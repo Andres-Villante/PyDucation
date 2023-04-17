@@ -37,14 +37,20 @@
                 {% if user.is_authenticated %}
                 <li class="nav-item">
                     {% if user.profile %}
+                    <div class="d-flex align-items-center">
+                        <a class="nav-link navbar-text text-dark" href="{% url 'profile_detail' user.profile.pk %}">Perfil</a>
                         <a class="nav-link" href="{% url 'profile_detail' user.profile.pk %}">
                             <img src="{{ user.profile.profile_pic.url }}" class="img-thumbnail profile-image" style="height: 40px;">
                         </a>
+                    </div>
                     {% else %}
+                    <div class="d-flex align-items-center">
+                        <a class="nav-link navbar-text text-dark" href="{% url 'profile_detail' user.profile.pk %}">Perfil</a>
                         <a class="nav-link" href="{% url 'profile_create' %}">
                             <img src="{% static 'images/default_profile_picture.png' %}" class="img-thumbnail profile-image" style="height: 40px;">
                         </a>
-                    {% endif %}
+                    </div>
+                    {% endif %}                    
                 </li>
                 </li>
                 <li class="nav-item">
@@ -57,10 +63,10 @@
                 </li>
                 {% else %}
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'login' %}">Login</a>
+                  <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'register' %}">Register</a>
+                  <a class="nav-link" href="{% url 'register' %}">Regístrate</a>
                 </li>
                 {% endif %}
               </ul>
