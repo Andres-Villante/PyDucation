@@ -51,7 +51,7 @@ Para crear tu perfil, inicia sesión en tu cuenta y haz clic en "Perfil" en la b
    
 4. Una vez que se hayan instalado las dependencias, ejecuta el siguiente comando para iniciar el servidor:
 
-python manage.py runserver
+   python manage.py runserver
 
 Ahora podrás acceder a PyDucation desde tu navegador web en la dirección http://localhost:8000.
 
