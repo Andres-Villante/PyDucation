@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+#Modelo Profile
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=100)
@@ -8,8 +9,7 @@ class Profile(models.Model):
     bio = models.TextField()
     profile_pic = models.ImageField(upload_to='profile_pics/', default='profile_pics/default_profile_pic.jpg')
 
-
-    
+#Modelo DataType
 class DataType(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
@@ -27,6 +27,7 @@ class DataType(models.Model):
     def __str__(self):
         return self.name
 
+#Modelo MathOperator
 class MathOperator(models.Model):
     name = models.CharField(max_length=50)
     symbol = models.CharField(max_length=10)
@@ -44,6 +45,7 @@ class MathOperator(models.Model):
     def __str__(self):
         return self.name
 
+#Modelo Function
 class Function(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
@@ -57,6 +59,7 @@ class Function(models.Model):
         default=None,
     )
 
+#Modelo PracticeExercise
 class PracticeExercise(models.Model):
     LEVEL_CHOICES = [
         ('facil', 'Fácil'),
@@ -68,6 +71,7 @@ class PracticeExercise(models.Model):
     description = models.TextField()
     level = models.CharField(max_length=20, choices=LEVEL_CHOICES)
 
+#Modelo Post
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
@@ -76,6 +80,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+#Modelo Response
 class Response(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='responses')
     author = models.ForeignKey(User, on_delete=models.CASCADE)

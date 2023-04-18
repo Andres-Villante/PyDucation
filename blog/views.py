@@ -20,7 +20,6 @@ from django.contrib import messages
 def About(request):
     return render(request, 'PyDucation/about.html')
 
-
 """
 Vistas de PyDucation
 """
@@ -55,7 +54,7 @@ class LogoutView(LogoutView):
 PERFIL
 """
 
-
+#Vista para crear perfil
 class ProfileCreateView(LoginRequiredMixin, CreateView):
     template_name = 'profile/profile_create.html'
     model = Profile
@@ -72,6 +71,7 @@ class ProfileCreateView(LoginRequiredMixin, CreateView):
         print(form.errors)
         return super().form_invalid(form)
 
+#Vista para ver los detalles del perfil
 class ProfileDetailView(LoginRequiredMixin, TemplateView):
     template_name = 'profile/profile_detail.html'
 
@@ -85,6 +85,7 @@ class ProfileDetailView(LoginRequiredMixin, TemplateView):
             context['form'] = ProfileForm(instance=profile)
         return context
 
+#Vista para actualizar perfil
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = Profile
     form_class = ProfileForm
@@ -100,7 +101,6 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('profile_detail', kwargs={'pk': self.object.pk})
-
 
 """
 Vistas del CRUD data_types
