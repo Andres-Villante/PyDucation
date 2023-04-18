@@ -13,6 +13,7 @@ class Profile(models.Model):
 class DataType(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
+    detailed_description = models.TextField(blank=True, null=True)
     example = models.TextField(blank=True, null=True)
     data_type_created_by = models.ForeignKey(
         User,

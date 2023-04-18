@@ -1,7 +1,14 @@
 {% extends 'PyDucation/base.html' %}
 
 {% block content %}
-    <h1>Has cerrado sesión exitosamente.</h1>
-    <p>Gracias por visitar PyDucation.</p>
-    <p>Para volver a iniciar sesión, por favor <a href="{% url 'home' %}">haz clic aquí</a>.</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto text-center">
+                <h1 class="mb-4">Has cerrado sesión exitosamente.</h1>
+                <p>Gracias por visitar PyDucation.</p>
+                <p>Esperamos que hayas disfrutado de nuestros recursos de aprendizaje de Python.</p>
+                <p>Para volver a iniciar sesión, por favor <a href="{% url 'home' %}">haz clic aquí</a>.</p>
+            </div>
+        </div>
+    </div>
 {% endblock %}

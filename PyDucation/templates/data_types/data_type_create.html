@@ -3,7 +3,7 @@
 
 {% block content %}
   <h1>Crear tipo de dato</h1>
-  <form method="post">
+  <form method="post" action="{% url 'data_type_create' %}">
     {% csrf_token %}
     <div class="form-group">
       <label for="{{ form.name.id_for_label }}">Nombre:</label>
@@ -12,6 +12,10 @@
     <div class="form-group">
       <label for="{{ form.description.id_for_label }}">Descripción:</label>
       {% render_field form.description class+="form-control" rows="3" %}
+    </div>
+    <div class="form-group">
+      <label for="{{ form.detailed_description.id_for_label }}">Descripción breve:</label>
+      {% render_field form.detailed_description class+="form-control" %}
     </div>
     <div class="form-group">
       <label for="{{ form.example.id_for_label }}">Ejemplo:</label>

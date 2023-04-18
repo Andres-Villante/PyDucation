@@ -2,24 +2,44 @@
 
 {% block content %}
   <h1>Lista de Funciones</h1>
-  <ul class="list-group">
+  <p>Las funciones son bloques de código que se pueden reutilizar en un programa para realizar una tarea específica. Al definir una función, se le da un nombre y un conjunto de parámetros que se utilizan para pasar información a la función. Las funciones pueden ser llamadas en cualquier momento dentro del programa para ejecutar el bloque de código que contienen, y pueden devolver un valor o realizar una acción sin devolver nada.</p>
+  <p>Las funciones son una parte fundamental de la programación modular, lo que significa que el código se divide en piezas más pequeñas y manejables que pueden ser reutilizadas en diferentes partes del programa. Esto permite una mayor eficiencia y una mejor organización del código, lo que a su vez facilita la lectura y el mantenimiento.</p>
+  <p>En Python, hay muchas funciones predefinidas que se pueden utilizar, como print(), input(), len(), range(), entre otras. También es posible crear funciones personalizadas, lo que significa que los programadores pueden definir sus propias funciones para realizar tareas específicas que no están disponibles en las funciones predefinidas.</p>
+  <p>Las funciones son una herramienta importante en la programación de computadoras, y su capacidad para reutilizar código y aumentar la eficiencia de un programa las convierte en un elemento crucial en el proceso de desarrollo de software.</p>
+  <div class="row">
     {% for function in functions %}
-      <li class="list-group-item">
-        <div class="d-flex justify-content-between align-items-center">
-          <h5>{{ function.name }}</h5>
-          <div>
-            <a href="{% url 'function_update' function.pk %}" class="btn btn-primary btn-sm">Editar</a>
-            <a href="{% url 'function_delete' function.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+      <div class="col-md-6 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title text-center mb-4"><strong style="font-size: 1.5rem">{{ function.name }}</strong></h5>
+            <hr>
+            <p class="card-text"><strong>Descripción:</strong> {{ function.description }}</p>
+            <p class="card-text"><strong>Ejemplo:</strong></p>
+            <pre>{{ function.example }}</pre>
+          </div>
+          <div class="card-footer d-flex justify-content-between">
+            <a href="{% url 'function_update' function.pk %}" class="btn btn-primary">
+              <i class="fas fa-edit"></i> Editar
+            </a>
+            <form action="{% url 'function_delete' function.pk %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger">
+                <i class="fas fa-trash"></i> Eliminar
+              </button>
+            </form>
           </div>
         </div>
-        <p class="mb-0" style="white-space: pre-wrap;"><strong>Descripción:</strong> {{ function.description }}</p>
-        <p class="mb-0" style="white-space: pre-wrap;"><strong>Ejemplo:</strong> {{ function.example }}</p>
-      </li>
+      </div>
     {% empty %}
-      <li class="list-group-item">No hay funciones todavía.</li>
+      <div class="col-md-12">
+        <div class="alert alert-info">
+          No hay funciones todavía.
+        </div>
+      </div>
     {% endfor %}
-  </ul>
+  </div>  
   <br>
+  <p>Si encuentras algún error o tienes sugerencias para mejorar esta sección, por favor háznoslo saber. También, si conoces alguna otra función importante en Python que consideras que debería estar incluida aquí, ¡estamos encantados de recibir tus contribuciones y hacer crecer juntos la comunidad de PyDucation!"</p>
   <a href="{% url 'function_create' %}" class="btn btn-success">Agregar Función</a>
   <a href="{% url 'pyducation' %}" class="btn btn-secondary">Atrás</a>
 {% endblock %}

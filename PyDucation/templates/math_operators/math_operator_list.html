@@ -2,7 +2,8 @@
 
 {% block content %}
   <h1>Operadores Matemáticos</h1>
-  <p>Estos son los diferentes operadores matemáticos disponibles:</p>
+  <p>Los operadores matemáticos son símbolos que se utilizan para realizar operaciones entre números en Python. Son herramientas fundamentales para la programación de cálculos matemáticos y son ampliamente utilizados en todo tipo de aplicaciones.</p>
+  <p>Python proporciona una variedad de operadores matemáticos para realizar tareas como sumar, restar, multiplicar y dividir números, así como operaciones más complejas como exponenciación y módulo. Aprender a utilizar estos operadores es fundamental para cualquier persona interesada en programación y análisis de datos en Python. En esta sección, exploraremos los diferentes operadores matemáticos disponibles en Python y cómo se pueden utilizar para realizar cálculos útiles.</p>
   <table class="table">
     <thead>
       <tr>
@@ -16,7 +17,7 @@
     <tbody>
       {% for math_operator in math_operators %}
       <tr>
-        <td>{{ math_operator.name }}</td>
+        <td><strong>{{ math_operator.name }}</strong></td>
         <td>{{ math_operator.symbol }}</td>
         <td>{{ math_operator.description }}</td>
         <td>{{ math_operator.example }}</td>
@@ -32,6 +33,7 @@
       {% endfor %}
     </tbody>
   </table>
+  <p>Si encuentras algún error o tienes sugerencias para mejorar esta sección, por favor háznoslo saber. También, si conoces alguna otra operador matemático importante en Python que consideras que debería estar incluido aquí, ¡estamos encantados de recibir tus contribuciones y hacer crecer juntos la comunidad de PyDucation!"</p>
   <a href="{% url 'math_operator_create' %}" class="btn btn-success">Agregar un Operador Matemáticos</a>
   <a href="{% url 'pyducation' %}" class="btn btn-secondary">Atrás</a>
 {% endblock %}

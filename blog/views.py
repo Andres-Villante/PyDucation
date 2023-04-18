@@ -116,7 +116,7 @@ class DataTypeListView(LoginRequiredMixin, ListView):
 class DataTypeCreateView(LoginRequiredMixin, CreateView):
     template_name = 'data_types/data_type_create.html'
     model = DataType
-    fields = ['name', 'description','example']
+    fields = ['name', 'description', 'detailed_description', 'example']
     success_url = reverse_lazy('data_type_list')
 
     def form_valid(self, form):
