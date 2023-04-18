@@ -49,13 +49,9 @@ Para crear tu perfil, inicia sesión en tu cuenta y haz clic en "Perfil" en la b
    
    pip install -r requirements.txt
    
-4. Una vez que se hayan instalado las dependencias, ejecuta el siguiente comando para iniciar el servidor:
+4. ¡Listo! Ahora puedes utilizar PyDucation ejecutando el archivo `pyducation.py`. Para hacerlo, escribe el siguiente comando en la terminal o línea de comandos:
 
-   python manage.py runserver
-
-Ahora podrás acceder a PyDucation desde tu navegador web en la dirección http://localhost:8000.
-
-¡Listo! Ahora puedes utilizar PyDucation.
+   python pyducation.py
 
 Recuerda cambiar "Andres-Villante" por tu nombre de usuario de GitHub en el paso 1. Además, si has renombrado el archivo pyducation.py, asegúrate de cambiar el nombre en las instrucciones de uso.
 
