@@ -23,9 +23,9 @@
             </a>
             <form action="{% url 'function_delete' function.pk %}" method="post">
               {% csrf_token %}
-              <button type="submit" class="btn btn-danger">
+              <a href="{% url 'function_delete' function.pk %}" class="btn btn-danger">
                 <i class="fas fa-trash"></i> Eliminar
-              </button>
+              </a>                                     
             </form>
           </div>
         </div>
