@@ -66,6 +66,9 @@ También puedes encontrar más información sobre mí en la sección "Acerca del
 
 ## Probando PyDucation 🚀
 
-En este video, se muestra como funciona PyDucation, explorando los distintos recursos para aprender python. ¡Aprende mientras te diviertes con PyDucation!
+Para conocer como funciona PyDucation te mostraremos un video el cual muestra como funciona, explorando los distintos recursos para aprender python. ¡Aprende mientras te diviertes con PyDucation!
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/698umVw5MB4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+Puedes ver el video completo haciendo clic aquí: [https://www.youtube.com/watch?v=698umVw5MB4](mailto:https://www.youtube.com/watch?v=698umVw5MB4)
+
+
+
