@@ -63,3 +63,9 @@ Si tienes alguna pregunta, sugerencia o simplemente quieres saludar, no dudes en
 - ☎️ Teléfono: +54 9 11 6642-5882
 
 También puedes encontrar más información sobre mí en la sección "Acerca del autor" de PyDucation en el footer de la página. ¡Estoy ansioso por escuchar de ti!
+
+## Probando PyDucation 🚀
+
+En este video, se muestra como funciona PyDucation, explorando los distintos recursos para aprender python. ¡Aprende mientras te diviertes con PyDucation!
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/698umVw5MB4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
